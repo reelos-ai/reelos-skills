@@ -11,6 +11,9 @@ Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen
 Recurring IP character required:
 镜环小工, ReelOS.ai's recurring article-illustration IP character. A small serious deadpan system-operator creature with a deep navy / near-black slightly uneven rounded body, one concentric lens-ring face inspired by the ReelOS logo, ivory outer ring, black ring, warm orange inner ring, tiny dark center, thin legs, tiny thin arms, and at most very subtle white dot eyes. 镜环小工 must perform the core conceptual action, not decorate the scene. Make it calm, strange, functional, and slightly bizarre, not cute, not a robot mascot.
 
+Hard character lock:
+The character must not be a plain black blob, generic robot, camera icon, cute mascot, or old 小黑-style creature. The lens-ring face is the identity anchor and must be visible in the final image.
+
 Theme:
 {正文配图主题}
 

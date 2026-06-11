@@ -74,7 +74,7 @@
 
 ## 反复刻规则
 
-不要默认打开或复刻 `assets/examples/`。这些图片只用于风格校准，例如线条密度、留白、颜色克制、角色气质。
+不要默认打开或复刻 `assets/examples/`。这些是 legacy 风格案例，只用于校准线条密度、留白和颜色克制，不用于校准角色外形。角色外形以 `assets/reelos/jinghuan-worker-character-sheet.png` 和 `references/jinghuan-worker-ip.md` 为准。
 
 除非用户明确说“照这张 / 复刻这个构图 / 用这个案例改”，否则不要直接复用这些旧构图：
 
