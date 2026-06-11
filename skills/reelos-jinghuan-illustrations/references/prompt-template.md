@@ -9,7 +9,7 @@ Visual DNA:
 Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten Chinese annotations. Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
 
 Recurring IP character required:
-镜环小工, ReelOS.ai's recurring article-illustration IP character. A small serious deadpan system-operator creature with a deep navy / near-black slightly uneven rounded body, one concentric lens-ring face inspired by the ReelOS logo, ivory outer ring, black ring, warm orange inner ring, tiny dark center, thin legs, tiny thin arms, and at most very subtle white dot eyes. 镜环小工 must perform the core conceptual action, not decorate the scene. Make it calm, strange, functional, and slightly bizarre, not cute, not a robot mascot.
+Always include ReelOS.ai's default recurring article-illustration IP character, even when the user does not mention a character name. The internal character name is 镜环小工. It is a small serious deadpan system-operator creature with a deep navy / near-black slightly uneven rounded body, one concentric lens-ring face inspired by the ReelOS logo, ivory outer ring, black ring, warm orange inner ring, tiny dark center, thin legs, tiny thin arms, and at most very subtle white dot eyes. 镜环小工 must perform the core conceptual action, not decorate the scene. Make it calm, strange, functional, and slightly bizarre, not cute, not a robot mascot.
 
 Hard character lock:
 The character must not be a plain black blob, generic robot, camera icon, cute mascot, or old 小黑-style creature. The lens-ring face is the identity anchor and must be visible in the final image.
@@ -24,7 +24,7 @@ Core idea:
 {这张图要表达的核心意思}
 
 Composition:
-{具体画面：镜环小工在哪里、正在做什么、主要物件是什么、信息如何流动}
+{具体画面：ReelOS 固定 IP 在哪里、正在做什么、主要物件是什么、信息如何流动；默认使用镜环小工，不要因为用户没写角色名而省略角色}
 
 Suggested elements:
 {元素1} / {元素2} / {元素3} / {元素4}
