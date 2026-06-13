@@ -1,75 +1,144 @@
-# 依赖安装顺序
+# 依赖与安装手册
 
-这份文档用于让 ReelOS 口播视频生产流程在新机器、新项目或新 Codex 会话里稳定运行。安装顺序很重要：先装系统程序和环境变量，再装基础 skills，最后安装 `reelos-video-production`。
+这份文档用于在新机器、新项目或新 Codex 会话里稳定运行 ReelOS 口播视频生产流程。安装顺序必须是：
 
-## 1. 系统程序
+1. 机器级程序。
+2. Remotion 视频项目依赖。
+3. TTS 环境变量。
+4. 基础 Codex skills。
+5. `reelos-video-production` workflow skill。
+6. 验证命令。
 
-### Node.js 和 npm
+## 1. 依赖关系总览
 
-Remotion 依赖 Node.js。建议使用当前 LTS 版本。
+| 层级 | 组件 | 用途 | 安装方式 |
+| --- | --- | --- | --- |
+| 系统程序 | Node.js / npm | 运行 Remotion、Next、脚本和 npm 依赖 | Homebrew、nvm 或官方安装包 |
+| 系统程序 | ffmpeg / ffprobe | 音频处理、读取音视频真实时长、成片验收 | `brew install ffmpeg` |
+| 系统程序 | Git | 克隆和推送 skill 仓库 | Xcode Command Line Tools 或 Homebrew |
+| 系统程序 | GitHub CLI `gh` | 私有仓库鉴权、修复 HTTPS git 凭据 | `brew install gh` |
+| 项目依赖 | Remotion | React 视频合成、Studio 预览、still/render 导出 | `npm install` |
+| 项目依赖 | React / React DOM | Remotion 组件运行基础 | `npm install` |
+| 项目依赖 | TypeScript / tsx | 类型检查、运行 TTS 生成脚本 | `npm install` |
+| 项目依赖 | `@remotion/player` | Web app 内预览 Remotion composition | `npm install` |
+| 项目依赖 | `ffmpeg-static` | 项目内 ffmpeg fallback | `npm install` |
+| 外部服务 | Giggle TTS API | 生成中文口播音频 | 设置 `GIGGLE_API_KEY` |
+| Codex skill | `koubo-shengao-yuan` | 内容理解、口播审稿、分段 | skill 安装 |
+| Codex skill | `giggle-generation-speech` | Giggle TTS 调用能力 | skill 安装 |
+| Codex skill | `remotion-best-practices` | Remotion 工程约束 | skill 安装 |
+| Codex skill | `reelos-design` | ReelOS 视觉审美与风格审查 | skill 安装 |
+| Codex skill | `reelos-jinghuan-illustrations` | 可选，ReelOS 插图和品牌视觉资产 | skill 安装 |
+| Codex skill | `reelos-video-production` | 最终编排整个口播视频生产流程 | 本仓库安装 |
+
+## 2. 安装系统程序
+
+### 2.1 安装 Homebrew
+
+如果 macOS 上还没有 Homebrew，先安装：
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
 检查：
 
 ```bash
+brew -v
+```
+
+### 2.2 安装 Node.js 和 npm
+
+推荐使用 LTS 版本。任选一种方式。
+
+方式 A，Homebrew：
+
+```bash
+brew install node
 node -v
 npm -v
 ```
 
-### ffmpeg 和 ffprobe
+方式 B，nvm：
 
-TTS 分段和成片验收都依赖 ffmpeg：
+```bash
+brew install nvm
+mkdir -p ~/.nvm
+nvm install --lts
+nvm use --lts
+node -v
+npm -v
+```
 
-- `ffmpeg`：调整音频语速、补齐静音、转 MP3。
-- `ffprobe`：读取音频和 MP4 的真实时长、帧率、音视频流。
-
-macOS 安装：
+### 2.3 安装 ffmpeg 和 ffprobe
 
 ```bash
 brew install ffmpeg
-```
-
-检查：
-
-```bash
 ffmpeg -version
 ffprobe -version
 ```
 
-### GitHub CLI
+`ffmpeg` 用于调整音频语速、拼接静音、转码。`ffprobe` 用于读取 MP3 和 MP4 的真实时长、码率、帧率和音视频流。
 
-如果需要创建、推送或安装私有仓库里的 skill，建议安装 `gh` 并登录。
+### 2.4 安装 GitHub CLI
+
+私有仓库安装 skill、推送文档和修复 git HTTPS 凭据都建议使用 `gh`。
 
 ```bash
 brew install gh
 gh auth login
 gh auth status
+gh auth setup-git
 ```
 
-## 2. Remotion 项目依赖
+如果 `git push` 报 `could not read Username for 'https://github.com'`，通常执行 `gh auth setup-git` 后再 push 即可。
 
-在视频项目目录里安装依赖：
+## 3. 安装 Remotion 视频项目依赖
+
+进入视频项目目录，例如：
+
+```bash
+cd "/Users/netseek/Documents/vibe remotion/vibe-motion"
+```
+
+安装项目依赖：
 
 ```bash
 npm install
 ```
 
-启动 Studio：
+当前项目依赖里和视频生产直接相关的组件包括：
+
+| npm 包 | 用途 |
+| --- | --- |
+| `remotion` | 核心视频合成、`Sequence`、`Html5Audio`、`staticFile`、`interpolate` |
+| `@remotion/player` | Web 页面内预览 composition |
+| `react` / `react-dom` | Remotion 组件运行基础 |
+| `typescript` | 类型检查，避免 render 前才发现接口错误 |
+| `tsx` | 运行 `.mjs` / TypeScript 辅助脚本 |
+| `ffmpeg-static` | 项目内 ffmpeg fallback |
+| `sharp` | 图片处理和部分构建场景依赖 |
+| `lucide-react` | UI 图标 |
+| `next` | 项目应用外壳和路由 |
+
+启动项目应用：
 
 ```bash
-npm run studio -- --port=3002
+npm run dev
 ```
 
-如果项目没有 `studio` script，也可以使用：
+如果项目使用独立 Remotion Studio，也可以运行：
 
 ```bash
-npx remotion studio --port=3002
+npx remotion studio src/index.ts --port=3002
 ```
 
-## 3. Giggle TTS 环境变量
+如果项目没有独立 `src/index.ts`，以实际 Remotion entry 文件为准。
 
-必须设置 `GIGGLE_API_KEY`。不要把 key 写入代码、文档、`.env` 或提交历史。
+## 4. 配置 Giggle TTS
 
-临时设置：
+必须设置 `GIGGLE_API_KEY`。不要把真实 key 写入代码、文档、`.env` 或提交历史。
+
+临时设置，只对当前终端有效：
 
 ```bash
 export GIGGLE_API_KEY="你的 key"
@@ -88,23 +157,42 @@ source ~/.zshrc
 test -n "$GIGGLE_API_KEY" && echo "GIGGLE_API_KEY is set"
 ```
 
-## 4. 先安装基础 skills
+默认使用用户指定 voice id。当前流程里常用 voice id 示例：
 
-`reelos-video-production` 依赖这些基础能力。建议先安装或确认已经存在。
+```text
+clone_20260518_060330_483432
+```
 
-### 口播审稿
+voice id 可以写在生成脚本配置里，API key 不可以写进脚本。
 
-用途：内容理解、口播稿改写、分段、口播视频流程约束。
+## 5. 安装基础 Codex skills
+
+`reelos-video-production` 是编排 skill，它依赖下面这些基础能力。先装基础 skills，再装本 skill。
+
+### 5.1 口播审稿 skill
+
+用途：
+
+- 深入理解文章。
+- 把书面语改成自媒体口播。
+- 控制节奏、停顿、情绪和互动感。
+- 输出可进入 TTS 的分段稿。
+
+安装方式取决于团队维护位置。如果使用当前团队私有仓库，可以从 `reelos-ai/reelos-skills` 安装未来公开版本；如果本地已有 `koubo-shengao-yuan`，检查即可：
+
+```bash
+test -f ~/.codex/skills/koubo-shengao-yuan/SKILL.md && echo "koubo-shengao-yuan installed"
+```
+
+如果团队通过 `remotion-dev/skills` 分发口播和 Remotion 相关 skills：
 
 ```bash
 npx skills add remotion-dev/skills
 ```
 
-如果团队使用私有版本，确保本地有 `koubo-shengao-yuan`。
+### 5.2 Giggle TTS skill
 
-### Giggle TTS
-
-用途：调用 Giggle TTS 生成口播音频。
+用途：调用 Giggle TTS，提交文本转语音任务，获取音频。
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
@@ -112,57 +200,147 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/giggle-generation-speech
 ```
 
-### Remotion 最佳实践
+如果 Python 证书报错，改用 git mode：
 
-用途：约束 Remotion 写法，避免 CSS animation、错误资产引用和不同步。
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo giggle-official/skills \
+  --path skills/giggle-generation-speech \
+  --method git
+```
+
+检查：
+
+```bash
+test -f ~/.codex/skills/giggle-generation-speech/SKILL.md && echo "giggle-generation-speech installed"
+```
+
+### 5.3 Remotion 最佳实践 skill
+
+用途：
+
+- 避免 CSS animation、错误资产路径和不可复现的 render 行为。
+- 使用 `Sequence`、`Html5Audio`、`staticFile`、`interpolate` 等 Remotion 原生模式。
+- 约束 still、render、ffprobe 验收方式。
+
+安装：
 
 ```bash
 npx skills add remotion-dev/skills
 ```
 
-### ReelOS 视觉审美
-
-用途：风格选择、去 AI 味、战略作战室风、黑板推演风、排版和视觉审查。
-
-如果在 ReelOS 私有 skill 仓库里：
+检查：
 
 ```bash
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-  --repo reelos-ai/reelos-skills \
-  --path skills/reelos-jinghuan-illustrations
+test -f ~/.codex/skills/remotion-best-practices/SKILL.md && echo "remotion-best-practices installed"
 ```
 
-说明：`reelos-jinghuan-illustrations` 主要负责正文配图和品牌插图，不是 Remotion 视频核心依赖；但如果视频需要 ReelOS IP 插图素材，建议安装。
+### 5.4 ReelOS 视觉审美 skill
 
-## 5. 最后安装本 skill
+用途：
 
-基础程序、环境变量和基础 skills 都准备好以后，再安装本 skill：
+- 选择“战略作战室风”“黑板推演风”等视觉方向。
+- 去掉 AI 味、模板味、丑线框和单调配色。
+- 审查画面层级、字体、色彩、动效和信息密度。
+
+检查：
+
+```bash
+test -f ~/.codex/skills/reelos-design/SKILL.md && echo "reelos-design installed"
+```
+
+如果团队将其放入私有 skill 仓库，按该仓库路径安装。安装后必须重启 Codex。
+
+### 5.5 ReelOS 插图 skill，可选
+
+用途：生成 ReelOS 品牌正文配图或镜环小工 IP 插图。口播视频核心流程不强依赖它，但需要品牌插图时建议安装。
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo reelos-ai/reelos-skills \
-  --path skills/reelos-video-production
+  --path skills/reelos-jinghuan-illustrations \
+  --method git
+```
+
+## 6. 安装本 workflow skill
+
+基础程序、项目依赖、环境变量和基础 skills 都准备好以后，再安装本 skill：
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-video-production \
+  --method git
+```
+
+检查：
+
+```bash
+test -f ~/.codex/skills/reelos-video-production/SKILL.md && echo "reelos-video-production installed"
 ```
 
 安装后重启 Codex，让新 skill 进入可发现列表。
 
-## 6. 推荐验证顺序
+## 7. 从零安装推荐命令
 
-安装完成后，在 Remotion 视频项目里执行：
+下面是 macOS 上的一组最小命令。真实 API key 用你自己的，不要粘贴到仓库里。
 
 ```bash
-npm exec tsc -- --noEmit
-npm run studio -- --port=3002
+brew install node ffmpeg gh
+gh auth login
+gh auth setup-git
 ```
 
-生成 TTS 的项目还要验证：
+```bash
+cd "/Users/netseek/Documents/vibe remotion/vibe-motion"
+npm install
+test -n "$GIGGLE_API_KEY" && echo "GIGGLE_API_KEY is set"
+```
 
 ```bash
-test -n "$GIGGLE_API_KEY" && echo "GIGGLE_API_KEY is set"
+npx skills add remotion-dev/skills
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo giggle-official/skills \
+  --path skills/giggle-generation-speech \
+  --method git
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-jinghuan-illustrations \
+  --method git
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-video-production \
+  --method git
+```
+
+## 8. 验证安装
+
+### 8.1 验证系统和项目
+
+```bash
+node -v
+npm -v
+ffmpeg -version
 ffprobe -version
 ```
 
-如果有现成合成，例如 `ProductionControl`：
+```bash
+cd "/Users/netseek/Documents/vibe remotion/vibe-motion"
+npm exec tsc -- --noEmit
+npm run dev
+```
+
+### 8.2 验证 skill 存在
+
+```bash
+for skill in koubo-shengao-yuan giggle-generation-speech remotion-best-practices reelos-design reelos-video-production; do
+  test -f "$HOME/.codex/skills/$skill/SKILL.md" && echo "$skill ok" || echo "$skill missing"
+done
+```
+
+### 8.3 验证已有视频合成
+
+如果项目里已有 `ProductionControl` 这类 composition：
 
 ```bash
 npx remotion still src/index.ts ProductionControl out/stills/check.png --frame=120 --overwrite
@@ -170,11 +348,18 @@ npx remotion render src/index.ts ProductionControl out/check.mp4 --overwrite --c
 ffprobe -v error -show_entries format=duration,size -show_streams -of json out/check.mp4
 ```
 
-## 7. 常见安装问题
+验证重点：
+
+- `ffprobe` 能读到视频流。
+- `ffprobe` 能读到音频流。
+- MP4 duration 接近 timing 总时长。
+- Studio 里打开 composition 有声音、有画面、不报错。
+
+## 9. 常见安装问题
 
 ### Python 安装器证书校验失败
 
-如果出现 `CERTIFICATE_VERIFY_FAILED`，可以改用 git 方式：
+如果出现 `CERTIFICATE_VERIFY_FAILED`，使用 git mode：
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
@@ -189,9 +374,10 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 ```bash
 gh auth status
+gh auth setup-git
 ```
 
-或确认 git 可以访问：
+再确认 git 可以访问：
 
 ```bash
 git ls-remote https://github.com/reelos-ai/reelos-skills.git
@@ -203,8 +389,9 @@ git ls-remote https://github.com/reelos-ai/reelos-skills.git
 
 - `public/voiceover-{slug}/scene-xx.mp3` 是否存在。
 - Remotion 组件是否使用 `Html5Audio` 和 `staticFile()`。
-- `voiceoverScenes` 的路径是否和 public 目录一致。
+- `voiceoverScenes` 的路径是否和 `public/` 目录一致。
 - render 命令是否完整执行成功。
+- 浏览器预览是否被静音，render 后 MP4 是否有音频流。
 
 ### 画面和声音不同步
 
@@ -212,5 +399,21 @@ git ls-remote https://github.com/reelos-ai/reelos-skills.git
 
 - `manifest.json` 的真实音频时长。
 - `{slug}Timings.ts` 是否由 TTS 脚本反写。
-- `Sequence from` 是否用 timing 文件。
-- 每段 `sceneDuration` 是否比 TTS target 多 1 秒转场缓冲。
+- `Sequence from` 和 `durationInFrames` 是否来自 timing 文件。
+- 每段 `sceneDuration` 是否比 TTS target 多出转场缓冲。
+
+### npm install 失败
+
+优先处理 Node 版本和原生依赖：
+
+```bash
+node -v
+npm -v
+npm install
+```
+
+如果涉及 `sharp`、`node-pty`、`ffmpeg-static` 等原生依赖，先确认 Xcode Command Line Tools：
+
+```bash
+xcode-select --install
+```

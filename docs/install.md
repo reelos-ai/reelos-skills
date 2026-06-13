@@ -4,20 +4,21 @@
 
 For stable video production, install in this order:
 
-1. System programs: Node.js, npm, ffmpeg, ffprobe, and optionally GitHub CLI.
-2. Project dependencies: run `npm install` in the Remotion project.
+1. System programs: Node.js, npm, ffmpeg, ffprobe, Git, and optionally GitHub CLI.
+2. Project dependencies: run `npm install` in the Remotion video project.
 3. Environment variable: set `GIGGLE_API_KEY` in the shell, never in committed files.
 4. Base skills: `koubo-shengao-yuan`, `giggle-generation-speech`, `remotion-best-practices`, `reelos-design`.
 5. Optional visual asset skill: `reelos-jinghuan-illustrations`.
 6. Final workflow skill: `reelos-video-production`.
+7. Verification: run TypeScript, Studio/still render, full MP4 render, and `ffprobe`.
 
-Detailed setup is in:
+Detailed dependency map, third-party components, and install commands are in:
 
 ```text
 skills/reelos-video-production/references/setup-dependencies.md
 ```
 
-After installation, read the design principles and production workflow in:
+After installation, read the design principles, production workflow, generated artifacts, and validation checklist in:
 
 ```text
 skills/reelos-video-production/references/video-production-workflow.md

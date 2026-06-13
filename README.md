@@ -23,13 +23,13 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 Replace `<owner>` with the GitHub account or organization that hosts this repository.
 
-For the video production skill, install system dependencies and base skills first. See:
+For the video production skill, install system programs, Remotion project dependencies, TTS credentials, and base skills first. The detailed dependency map and install commands are documented in:
 
 ```text
 skills/reelos-video-production/references/setup-dependencies.md
 ```
 
-The design principles and production workflow are documented in:
+The design principles, full production workflow, generated artifacts, and validation checklist are documented in:
 
 ```text
 skills/reelos-video-production/references/video-production-workflow.md
