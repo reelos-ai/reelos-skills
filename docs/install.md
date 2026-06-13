@@ -17,6 +17,12 @@ Detailed setup is in:
 skills/reelos-video-production/references/setup-dependencies.md
 ```
 
+After installation, read the design principles and production workflow in:
+
+```text
+skills/reelos-video-production/references/video-production-workflow.md
+```
+
 ## Install One Skill
 
 ```bash

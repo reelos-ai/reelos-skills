@@ -9,12 +9,20 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 
 把中文文章、链接、粘贴文本或观点稿做成稳定可复用的 Remotion 口播视频。核心原则是：先把内容审成适合真人讲述的口播稿，再生成真实 TTS 音频，用真实音频时长反写 timing，最后让 Remotion 画面跟随 timing 文件。
 
+## 设计思想
+
+- 内容先行：视频不是把文章搬上屏幕，而是把观点重构成镜头前能讲清楚的表达。
+- 声音定时：真实 TTS 音频是节奏基准，画面、字幕、转场都服从音频 timing。
+- 一段一意：每个分镜只服务当前口播段落，避免一屏堆多个结论。
+- 风格克制：默认做商业推演和教学拆解，不做空洞科技感、丑线框和模板卡片堆叠。
+- 工程可复用：每条视频都沉淀为脚本、音频、timing、组件和验收记录，方便迭代下一条。
+
 ## 先读这些参考
 
 按任务需要读取，不要一次塞满上下文：
 
 - `references/setup-dependencies.md`：首次搭建或环境不稳定时必须先读；包含程序、环境变量、基础 skills 和本 skill 的安装顺序。
-- `references/video-production-workflow.md`：制作新视频时读取；包含完整 SOP、文件命名、命令、验收清单。
+- `references/video-production-workflow.md`：制作新视频时读取；包含设计思想、完整工作流、文件命名、命令、验收清单。
 - `references/style-presets.md`：用户要求选风格、换风格、去 AI 味、优化视觉时读取。
 - `references/tts-remotion-pattern.md`：新增 TTS 脚本、timing 文件或 Remotion 合成时读取。
 

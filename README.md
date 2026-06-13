@@ -29,6 +29,12 @@ For the video production skill, install system dependencies and base skills firs
 skills/reelos-video-production/references/setup-dependencies.md
 ```
 
+The design principles and production workflow are documented in:
+
+```text
+skills/reelos-video-production/references/video-production-workflow.md
+```
+
 Then install:
 
 ```bash
