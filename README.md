@@ -9,6 +9,7 @@ This repository collects reusable skills for Chinese article workflows, visual t
 | Skill | Purpose | Status |
 | --- | --- | --- |
 | `reelos-jinghuan-illustrations` | Generate ReelOS-style Chinese article illustrations with the Jinghuan Worker IP. | active |
+| `reelos-video-production` | Produce Chinese narrated Remotion videos with TTS, timing sync, visual style presets, render, and validation. | active |
 
 ## Install
 
@@ -22,6 +23,20 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 Replace `<owner>` with the GitHub account or organization that hosts this repository.
 
+For the video production skill, install system dependencies and base skills first. See:
+
+```text
+skills/reelos-video-production/references/setup-dependencies.md
+```
+
+Then install:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-video-production
+```
+
 After installing, restart Codex so the new skill is loaded.
 
 ## Repository Layout
@@ -29,10 +44,14 @@ After installing, restart Codex so the new skill is loaded.
 ```text
 reelos-skills/
 ├── skills/
-│   └── reelos-jinghuan-illustrations/
+│   ├── reelos-jinghuan-illustrations/
+│   │   ├── SKILL.md
+│   │   ├── agents/
+│   │   ├── assets/
+│   │   └── references/
+│   └── reelos-video-production/
 │       ├── SKILL.md
 │       ├── agents/
-│       ├── assets/
 │       └── references/
 ├── docs/
 │   ├── install.md
