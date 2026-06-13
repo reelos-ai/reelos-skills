@@ -13,6 +13,8 @@ This repository collects reusable skills for Chinese article workflows, visual t
 
 ## Install
 
+Each folder under `skills/` is a self-contained skill. Skill-specific setup, workflow, and design documentation should live inside that skill, usually under `references/`.
+
 Install a skill from this repository with the Codex skill installer:
 
 ```bash
@@ -60,7 +62,6 @@ reelos-skills/
 │       ├── agents/
 │       └── references/
 ├── docs/
-│   ├── install.md
 │   └── skill-authoring.md
 └── examples/
     └── README.md
