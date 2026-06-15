@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF Book Accelerator"
+  short_description: "Accelerate PDF ebook reading and notes"
+  default_prompt: "Use $pdf-book-accelerator to extract this PDF book, map its chapters, and produce practical reading notes."
