@@ -70,7 +70,8 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
    - For Chinese users, run `python3 scripts/generate_reading_notes.py <extract-dir> --lang zh-CN --mode baopo --out <extract-dir>/reading-notes.zh-CN.md`.
    - Final delivery must be HTML: run `python3 scripts/render_reading_html.py <notes.md> --out <extract-dir>/reading-notes.zh-CN.html`.
    - The renderer produces a standalone, offline report: a book-identity hero with a stat dashboard, a scroll-spy table of contents, a reading-progress bar, section-themed card/grid/Q&A layouts, automatic light/dark mode, and print styles. It needs no network or fonts. Inline `<svg>` models and fenced ```svg / ```html blocks pass through unescaped, so render mental-model diagrams directly into the notes Markdown.
-   - Lead with the conclusion. Put a `## 核心结论` section first using a `> [!key] ...` callout so readers get the takeaway before the detail. Other callout kinds: `> [!tip]`, `> [!warn]`, `> [!quote]`.
+   - Open with a `## 开卷导读` (guide) block, then lead with the conclusion. The guide answers three reader questions as `### ` headings — 我读它，为了解决什么问题？ / 有没有一个核心模型？ / 读完之后我能做什么？ — under an italic `*——subtitle*`. It renders as boxed accent question headers; use `{汉字|pīnyīn}` ruby for rare characters and `*italic*` for the subtitle.
+   - After the guide, put a `## 核心结论` section using a `> [!key] ...` callout so readers get the takeaway before the detail. Other callout kinds: `> [!tip]`, `> [!warn]`, `> [!quote]`.
    - Use the right component for the content: a `## 生平年表` / `## 时间线` section renders bullets like `- 1508 — 龙场悟道` as a visual timeline; GFM tables (`| 维度 | A | B |`) render as styled comparison tables; concept/method/insight sections render as cards. Choose these to maximize readability for biographies, comparisons, and frameworks.
    - Verify final artifacts: run `python3 scripts/verify_reading_output.py <extract-dir> --md reading-notes.zh-CN.md --html reading-notes.zh-CN.html`. Fix any reported failure before calling the HTML final.
    - When the user wants quick capture or a poster, deliver a one-page poster HTML first, with a link to the full notes HTML.
@@ -110,6 +111,7 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
 - Full-book synthesis: 10 key ideas, 5 actions, 3 questions
 - Knowledge asset conversion: one-page card, article ideas, team/PPT outline, product/business/management implications
 - What to skip, skim, or deep-read
+- 开卷导读 opening guide: why read / core model / what you can do after
 - Read-mode gate: compress vs preserve decision
 - Falsification and counterexamples: what the model cannot explain, likely misreads, author's rebuttal
 - Reuse schedule: 7/30/90-day spaced review, cross-model collision, syntopical links

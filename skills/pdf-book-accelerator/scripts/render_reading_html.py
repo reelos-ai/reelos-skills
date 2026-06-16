@@ -37,6 +37,8 @@ MODE_LABELS = {
 # (keyword in heading, icon, hue, layout). First match wins, so order specific → generic.
 # layout: "grid" = nine-grid tiles, "cards" = card grid, "list" = clean bullets.
 SECTION_THEMES: list[tuple[str, str, int, str]] = [
+    ("开卷导读", "🧭", 8, "guide"),
+    ("导读", "🧭", 8, "guide"),
     ("一页速读", "📖", 205, "list"),
     ("One-Page", "📖", 205, "list"),
     ("阅读目标", "🎯", 8, "cards"),
@@ -114,8 +116,11 @@ SECTION_THEMES: list[tuple[str, str, int, str]] = [
 
 def inline_markup(text: str) -> str:
     escaped = html.escape(text)
+    # Ruby annotation for rare characters: {汉字|pīn yīn} -> <ruby>汉字<rt>pīn yīn</rt></ruby>
+    escaped = re.sub(r"\{([^|{}]+)\|([^{}]+)\}", r"<ruby>\1<rt>\2</rt></ruby>", escaped)
     escaped = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2">\1</a>', escaped)
     escaped = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", escaped)
+    escaped = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"<em>\1</em>", escaped)
     escaped = re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
     escaped = re.sub(r"“([^”]+)”", r'<span class="quote">“\1”</span>', escaped)
     return escaped
@@ -455,7 +460,7 @@ def build_sections(body: str) -> tuple[str, list[tuple[str, str, str]]]:
             return
         body_html = render_section_body(buffer, current_layout)
         sections_html.append(
-            f'    <section id="{current_id}" class="block" style="--c: hsl({current_hue} 64% 45%);">\n'
+            f'    <section id="{current_id}" class="block block--{current_layout}" style="--c: hsl({current_hue} 64% 45%);">\n'
             f'      <div class="block-head"><span class="block-ic">{current_icon}</span>'
             f'<span class="block-no">{index:02d}</span>'
             f'<h2>{inline_markup(current_title)}</h2></div>\n'
@@ -708,6 +713,20 @@ def build_html(markdown: str, title: str) -> str:
     tbody td {{ padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }}
     tbody tr:last-child td {{ border-bottom: 0; }}
     tbody tr:nth-child(even) {{ background: color-mix(in srgb, var(--c) 4%, transparent); }}
+    /* 开卷导读 guide block */
+    ruby rt {{ font-size: .58em; color: var(--accent); font-weight: 600; letter-spacing: .02em; }}
+    .block--guide .block-body > p:first-child {{
+      margin-top: 0; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px dashed var(--line);
+      color: var(--soft); font-size: 15.5px;
+    }}
+    .block--guide h3 {{
+      display: inline-block; margin: 24px 0 10px; padding: 7px 16px 7px 14px;
+      color: var(--accent-ink); font-size: 17.5px; font-family: inherit;
+      background: color-mix(in srgb, var(--accent) 11%, transparent);
+      border-left: 4px solid var(--accent); border-radius: 0 9px 9px 0;
+    }}
+    .block--guide .block-body > h3:first-child {{ margin-top: 0; }}
+    .block--guide .block-body p {{ font-size: 16px; }}
     footer {{ margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--soft); font-size: 12.5px; text-align: center; }}
     @media (max-width: 880px) {{
       .shell {{ display: block; width: min(100% - 26px, 760px); padding: 16px 0 48px; }}
