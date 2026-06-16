@@ -55,6 +55,7 @@ Use `knowledge-asset-workflow.md` when the final deliverable should become reusa
 - 跨场景迁移矩阵: trigger, old reaction, new action, failure boundary, validation signal.
 - 7 天复盘日志: date/day, reps, resistance, old behavior occurred, next adjustment.
 - 教学输出包: 60-second explanation, 3 analogies, 5 questions, 1 exercise, common misunderstandings.
+- 开卷导读: opening guide block answering three reader questions (我读它解决什么问题 / 有没有一个核心模型 / 读完之后我能做什么), under an italic subtitle; render as boxed question headers.
 - 选读法门: compress vs preserve decision, plus a slow-burn vs garbage distinction.
 - 模型证伪与反例: one point the model cannot explain, one likely misread, one author rebuttal, one prediction test.
 - 复用调度: 7/30/90-day spaced review, cross-model collision, syntopical links, a concrete recall trigger.

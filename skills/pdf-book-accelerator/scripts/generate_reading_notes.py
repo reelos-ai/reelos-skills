@@ -160,6 +160,18 @@ def build_half_second_notes_zh(metadata: dict, chapters: object, title: str, aut
     lines: list[str] = []
     append_book_header(lines, title, author, metadata, mode)
 
+    lines.append("\n## 开卷导读")
+    lines.append("\n*——一个想改掉旧习惯的人，如何在「半秒」里改写第一反应*")
+    lines.append("\n### 我读它，为了解决什么问题？")
+    lines.append("\n为什么明明知道更好的选择，临场还是自动做出旧反应。它要解决的是「知道却做不到」——不靠事后意志力硬压，而是在刺激后的半秒里，让新动作先于旧反应启动。")
+    lines.append("\n### 有没有一个核心模型？")
+    lines.append("\n一句话核心：第一反应是事前写入的，不是现场选择的。母框架是 ARISE 脚本：刺激 → 旧反应启动 → 熟悉性计数器强化 → 新动作脚本重复 → 默认反应被改写。先写一个短、具体、可观察的动作脚本，重复到熟悉，让它接管半秒。")
+    lines.append("\n### 读完之后我能做什么？")
+    lines.append("- 改习惯：选一个旧反应，写「当 X 时，我做 Y，因为 Z」并重复 7 天。")
+    lines.append("- 控冲动：在争吵、消费、投资波动前，用脚本插入一个可观察的小动作。")
+    lines.append("- 待抗拒：把「觉得蠢」当成新脚本碰到旧身份的正常信号，而非失败。")
+    lines.append("- 做维护：环境持续写入，定期重复以防旧反应回潮。")
+
     lines.append("\n## 阅读目标与知识资产")
     lines.append("- 默认目标: 快速理解 + 提炼可用方法 + 输出内容素材。")
     lines.append("- 可选目标: 快速了解、深度学习、写作/内容输出、产品/创业参考、管理/组织学习、投资/商业分析、个人行动。")
@@ -532,6 +544,15 @@ def build_generic_notes_zh(metadata: dict, chapters: object, full_text: str, tit
     quality = evidence_quality(metadata, chapters, full_text)
     terms = top_terms(full_text)
     append_book_header(lines, title, author, metadata, mode)
+
+    lines.append("\n## 开卷导读")
+    lines.append("\n*——先用三个问题锁定你和这本书的关系，再开始读*")
+    lines.append("\n### 我读它，为了解决什么问题？")
+    lines.append("\n用一句话写下你要这本书帮你解决的具体问题；它决定你精读哪些章、跳过哪些章。")
+    lines.append("\n### 有没有一个核心模型？")
+    lines.append("\n读完后用「输入 → 机制 → 输出 → 可干预点」把全书压成一个模型；如果压不出，说明还没抓住骨架。")
+    lines.append("\n### 读完之后我能做什么？")
+    lines.append("\n把模型落成一份能力清单：在什么场景、遇到什么触发、你会改用什么新做法，并设计一个 7 天验证。")
 
     lines.append("\n## 一页速读")
     lines.append(f"\n评测结论: 当前提取质量为 {quality}。这份笔记先提供问题驱动的阅读支架，核心判断只基于目录、标题、章节边界和高频术语；需要深读后再固化最终结论。")
