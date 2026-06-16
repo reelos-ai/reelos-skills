@@ -13,9 +13,12 @@ import pdfplumber
 
 logging.getLogger("pdfminer").setLevel(logging.ERROR)
 
+# Chinese: match chapter-level units (章/卷/部/回) only. 节/篇 are sub-sections that
+# routinely appear mid-paragraph ("第五节中的…", "第七篇的题目…") and produce false
+# chapter starts, so they are intentionally excluded.
 CHAPTER_PATTERNS = [
     re.compile(r"^\s*(chapter|chap\.?)\s+\d+\s*[:.-]\s*(.+)?$", re.IGNORECASE),
-    re.compile(r"^\s*(第[一二三四五六七八九十百千万0-9]+[章节篇部])\s*(.+)?$"),
+    re.compile(r"^\s*(第[一二三四五六七八九十百千万0-9]+[章卷部回])\s{0,2}(\S.{0,28})?$"),
     re.compile(r"^\s*\d{1,2}\s+[A-Z][A-Za-z0-9 ,:;'\-]{6,}$"),
 ]
 CHAPTER_NUMBER = re.compile(r"\bchapter\s+(\d+)\b", re.IGNORECASE)
@@ -65,7 +68,38 @@ def extract_toc_titles(page_texts: dict[int, str]) -> dict[int, str]:
     return toc_titles
 
 
-def extract(pdf_path: Path, out_dir: Path) -> dict:
+def build_book_markdown(book_title: str, page_texts: dict[int, str], chapter_starts: list[dict]) -> str:
+    """Assemble a clean reading-friendly Markdown: title + ## chapter headings + body."""
+    chapter_map = {int(c["page"]): str(c["title"]) for c in chapter_starts}
+    out: list[str] = [f"# {book_title}", ""]
+    first_chapter_page = min(chapter_map) if chapter_map else None
+    pre_done = False
+    for page in sorted(page_texts):
+        title = chapter_map.get(page)
+        if title:
+            out.append("")
+            out.append(f"## {title}")
+            out.append("")
+        elif first_chapter_page is not None and page < first_chapter_page and not pre_done:
+            out.append("## 卷首")
+            out.append("")
+            pre_done = True
+        text = page_texts.get(page, "").strip()
+        if not text:
+            continue
+        lines = text.splitlines()
+        if title and lines and re.sub(r"\s+", "", lines[0]) == re.sub(r"\s+", "", title):
+            lines = lines[1:]  # drop the duplicated heading line on the chapter-start page
+        for line in lines:
+            line = line.strip()
+            if not line or re.fullmatch(r"page \d+", line, flags=re.IGNORECASE):
+                continue
+            out.append(line)
+            out.append("")
+    return "\n".join(out).strip() + "\n"
+
+
+def extract(pdf_path: Path, out_dir: Path, markdown: bool = False) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     pages_dir = out_dir / "pages"
     pages_dir.mkdir(exist_ok=True)
@@ -88,11 +122,17 @@ def extract(pdf_path: Path, out_dir: Path) -> dict:
                     headings.append({"page": index, "text": line.strip()})
 
             all_text_parts.append(f"\n\n--- page {index} ---\n\n{text}")
+            # CJK-aware length: count each CJK character plus each Latin word token, so
+            # the estimate is meaningful for Chinese books (where a "word" regex would
+            # otherwise collapse whole phrases into a single token and undercount badly).
+            cjk = len(re.findall(r"[㐀-鿿]", text))
+            latin = len(re.findall(r"[A-Za-z][A-Za-z'-]*", text))
             page_records.append(
                 {
                     "page": index,
                     "chars": len(text),
-                    "words_estimate": len(re.findall(r"\w+", text)),
+                    "cjk_chars": cjk,
+                    "words_estimate": cjk + latin,
                     "text_file": str(page_file),
                 }
             )
@@ -133,6 +173,12 @@ def extract(pdf_path: Path, out_dir: Path) -> dict:
         json.dumps(chapter_starts, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    if markdown:
+        book_title = pdf_path.stem
+        md = build_book_markdown(book_title, page_texts, chapter_starts)
+        md_path = out_dir / "book.md"
+        md_path.write_text(md, encoding="utf-8")
+        metadata["markdown"] = str(md_path)
     return metadata
 
 
@@ -140,13 +186,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Extract text from a PDF ebook.")
     parser.add_argument("pdf", type=Path, help="Path to the PDF file")
     parser.add_argument("--out", type=Path, default=Path("book-extract"), help="Output directory")
+    parser.add_argument("--markdown", action="store_true", help="Also write a structured book.md (title + chapter headings + body)")
     parser.add_argument("--verbose", action="store_true", help="Print full metadata including page details")
     args = parser.parse_args()
 
     if not args.pdf.exists():
         raise SystemExit(f"PDF not found: {args.pdf}")
 
-    metadata = extract(args.pdf, args.out)
+    metadata = extract(args.pdf, args.out, markdown=args.markdown)
     if args.verbose:
         print(json.dumps(metadata, ensure_ascii=False, indent=2))
     else:
@@ -159,6 +206,8 @@ def main() -> None:
             "chapter_starts": metadata["chapter_starts"],
             "out": str(args.out),
         }
+        if metadata.get("markdown"):
+            summary["markdown"] = metadata["markdown"]
         print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

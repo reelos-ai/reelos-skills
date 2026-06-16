@@ -34,10 +34,12 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
    - Classify the reading goal: quick overview, deep study, writing/content, product/startup, management/organization learning, investment/business research, or personal action.
    - Default reading mode is 爆破模式 for serious PDF book tasks; use 碎弹模式 for quick poster-only tasks; use 核弹模式 for cross-book comparison.
    - For new books, establish the three pre-reading questions: why read, what problem to solve, what to do after reading.
+   - Choose a read-mode gate (选读法门) before extracting: a **compress** read (tool/method books → one problem, one model, cards, action) or a **preserve** read (philosophy, history, literature, dense theory → keep the book's tensions, detail, and unresolved parts instead of crushing it into one slogan). Classification precedes method. Distinguish "garbage" from "a good book that is just slow to warm up" so the evaluation gate does not kill slow-burn books.
 
 2. **Extract**
+   - Requires `pdfplumber` (`python3 -m pip install pdfplumber`). Install it once if the import fails.
    - Run `python3 scripts/extract_pdf.py <pdf> --out <workdir>` from this skill directory.
-   - If extraction returns very little text, report that the PDF is likely scanned and OCR is needed.
+   - If extraction returns very little text (`low_text_warning` is true), report that the PDF is likely scanned and OCR is needed.
    - Keep raw extraction separate from synthesized notes.
 
 3. **Map**
@@ -58,6 +60,7 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
    - Pass 3: keyword-led reading - identify core terms, supporting terms, action terms, and boundary terms.
    - Pass 4: quote-led compression - collect short original gold sentences only when legally and cognitively useful; otherwise write agent-owned paraphrase sentences.
    - Pass 5: output - convert useful ideas into structure, counterintuitive insights, Feynman explanations, methodology cards, and reusable knowledge cards.
+   - Falsification pass (模型证伪): before trusting the model, force three findings - one point the model cannot explain, one place the agent most likely misread under its own frame, and one way the author would reject the compression. Test understanding by prediction: can you predict what the author would say in a situation the book never covers? If not, the model captured a conclusion, not a mechanism. This guards against confirmation bias and trimming the book to fit the frame.
    - For learning-method tasks, add a final write-do loop: thought -> card -> short article or explanation -> practice -> feedback -> revised view.
    - For knowledge-asset tasks, add asset conversion: one-page note, executive summary, article/social post, team-sharing outline, PPT outline, product/business/management implications, or personal action plan.
 
@@ -66,11 +69,15 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
    - Run `python3 scripts/generate_reading_notes.py <extract-dir> --mode baopo --out <extract-dir>/reading-notes.md` to create the working notes file.
    - For Chinese users, run `python3 scripts/generate_reading_notes.py <extract-dir> --lang zh-CN --mode baopo --out <extract-dir>/reading-notes.zh-CN.md`.
    - Final delivery must be HTML: run `python3 scripts/render_reading_html.py <notes.md> --out <extract-dir>/reading-notes.zh-CN.html`.
-   - Verify final artifacts: run `python3 scripts/verify_reading_output.py <extract-dir> --md reading-notes.zh-CN.md --html reading-notes.zh-CN.html`.
+   - The renderer produces a standalone, offline report: a book-identity hero with a stat dashboard, a scroll-spy table of contents, a reading-progress bar, section-themed card/grid/Q&A layouts, automatic light/dark mode, and print styles. It needs no network or fonts. Inline `<svg>` models and fenced ```svg / ```html blocks pass through unescaped, so render mental-model diagrams directly into the notes Markdown.
+   - Lead with the conclusion. Put a `## 核心结论` section first using a `> [!key] ...` callout so readers get the takeaway before the detail. Other callout kinds: `> [!tip]`, `> [!warn]`, `> [!quote]`.
+   - Use the right component for the content: a `## 生平年表` / `## 时间线` section renders bullets like `- 1508 — 龙场悟道` as a visual timeline; GFM tables (`| 维度 | A | B |`) render as styled comparison tables; concept/method/insight sections render as cards. Choose these to maximize readability for biographies, comparisons, and frameworks.
+   - Verify final artifacts: run `python3 scripts/verify_reading_output.py <extract-dir> --md reading-notes.zh-CN.md --html reading-notes.zh-CN.html`. Fix any reported failure before calling the HTML final.
    - When the user wants quick capture or a poster, deliver a one-page poster HTML first, with a link to the full notes HTML.
-   - The Chinese generator may use known-structure adapters. If no adapter matches, treat the output as a neutral scaffold and refine it with `references/chinese-reading-notes.md`; never let known-book concepts pollute unknown-book fallback.
-   - Fill or refine the generated notes with synthesis from the extracted text; do not leave placeholders in the final answer unless the user asks for a worksheet.
+   - The Chinese generator may use known-structure adapters. If no adapter matches, the script emits a neutral scaffold whose lines are reading-method prompts (e.g. "候选书核: 先不要编造最终主张…"), not analysis. This scaffold is a worksheet, never the final deliverable.
+   - Replace every scaffold prompt with real, book-specific synthesis drawn from the extracted text before delivering. The final report must read as actual analysis of *this* book — concrete claims, the book's own concepts and timeline, real review-card answers — with no leftover instructional placeholder lines. Refine with `references/chinese-reading-notes.md`; never let known-book concepts pollute an unknown-book report.
    - For polished Chinese notes, read `references/chinese-reading-notes.md` after the scaffold is generated.
+   - Add a reuse schedule (复用调度) so the report does not become a card graveyard: spaced-review checkpoints (7 / 30 / 90 days), a cross-model collision (where this book's model conflicts with or extends the reader's existing models), and a syntopical link (2-3 same-topic books to read against it). State a concrete trigger scene for calling the model up again.
    - Cite page numbers when extraction provides reliable page boundaries.
    - Separate author claims from the agent's interpretation.
    - Mark uncertain extraction, missing pages, OCR risk, or weak evidence explicitly.
@@ -103,6 +110,9 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
 - Full-book synthesis: 10 key ideas, 5 actions, 3 questions
 - Knowledge asset conversion: one-page card, article ideas, team/PPT outline, product/business/management implications
 - What to skip, skim, or deep-read
+- Read-mode gate: compress vs preserve decision
+- Falsification and counterexamples: what the model cannot explain, likely misreads, author's rebuttal
+- Reuse schedule: 7/30/90-day spaced review, cross-model collision, syntopical links
 - Generated Markdown artifacts only as intermediate files
 - Transfer matrix and 7-day application log when the goal is practical use
 - Teaching output package when the user wants to explain or internalize the book
@@ -115,6 +125,8 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
 - Convert useful insights into knowledge assets, not just notes.
 - When a book's value is a model, render the model as SVG: name the model, show inputs, mechanism, output, intervention point, and usage formula.
 - For repetitive single-concept books, optimize for concept compression and transfer, not chapter coverage.
+- Do not over-compress. Not every book should become one model; pick the read-mode gate first and let dense books keep their complexity.
+- Stay honest, not self-confirming. Every deep report must include a falsification pass and a reuse schedule (the verifier enforces both for Chinese reports). Understanding is measured by prediction, not by filling every template slot.
 - Use questions to decide what to read, keywords to decide what to extract, and gold sentences/paraphrases to decide what to remember.
 - For learning-method books, treat writing as thinking: if a claim cannot be written clearly, do not mark it as understood.
 - Separate card types: 观点卡 for how to think, 方法卡 for how to act, 案例卡 for concrete scenes.

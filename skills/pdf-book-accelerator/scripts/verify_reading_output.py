@@ -98,6 +98,14 @@ def verify(workdir: Path, md_name: str, html_name: str) -> dict[str, object]:
     if "读后行动闭环" in markdown and not all(token in markdown for token in ("行动目标", "最小行动", "迭代信号")):
         failures.append("action loop lacks goal, MVP, or iteration signal")
 
+    # Chinese deep reports (marked by 复习卡片) must include the upgrade sections:
+    # a read-mode gate, a falsification pass, and a spaced-reuse schedule.
+    if "复习卡片" in markdown:
+        if "证伪" not in markdown and "反例" not in markdown:
+            failures.append("missing falsification section (模型证伪/反例)")
+        if "复用调度" not in markdown and "间隔复盘" not in markdown:
+            failures.append("missing reuse-schedule section (复用调度/间隔复盘)")
+
     metadata_path = workdir / "metadata.json"
     if metadata_path.exists():
         metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
