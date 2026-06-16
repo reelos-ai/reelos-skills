@@ -24,7 +24,8 @@ Use `knowledge-asset-workflow.md` when the final deliverable should become reusa
 - Direct gold-sentence quotes must be short and sparse; prefer paraphrase when copyright or source confidence is uncertain.
 - Learning-method outputs must include a write-do feedback loop: thought, card, explanation/article, practice, feedback, revised view.
 - Knowledge-asset outputs must include reading goal, book map, reading priority, synthesis, and at least one reusable asset.
-- Chinese deep reports (爆破模式) must include three upgrade sections: 选读法门 (compress vs preserve gate), 模型证伪与反例 (one thing the model cannot explain, one likely misread, one author rebuttal), and 复用调度 (7/30/90-day spaced review, cross-model collision, syntopical links). The verifier fails a report missing falsification or reuse-schedule.
+- Chinese deep reports (爆破模式) must include a 提问链 plus three upgrade sections: 选读法门 (compress vs preserve gate), 模型证伪与反例 (one thing the model cannot explain, one likely misread, one author rebuttal), and 复用调度 (7/30/90-day spaced review, cross-model collision, syntopical links). The verifier fails a report missing question-chain, falsification, or reuse-schedule.
+- The 提问链 must be an actual chain, not a flat list: each question links to the chapter/section that answers it, and its answer forces the next, sharper question, so questions drive what to read and what to skip.
 
 ## Professional default
 

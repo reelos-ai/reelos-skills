@@ -101,6 +101,8 @@ def verify(workdir: Path, md_name: str, html_name: str) -> dict[str, object]:
     # Chinese deep reports (marked by 复习卡片) must include the upgrade sections:
     # a read-mode gate, a falsification pass, and a spaced-reuse schedule.
     if "复习卡片" in markdown:
+        if "提问链" not in markdown:
+            failures.append("missing question-chain section (提问链)")
         if "证伪" not in markdown and "反例" not in markdown:
             failures.append("missing falsification section (模型证伪/反例)")
         if "复用调度" not in markdown and "间隔复盘" not in markdown:

@@ -50,7 +50,7 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
    - Apply the sequence from `onion-reading-system.md`: evaluation, fast reading, rest, deep reading, forced output.
    - Apply the Zhang Kai gate from `zhang-kai-fast-reading.md`: output 继续读, 只速读, 跳读, or 暂不读 before investing in deep extraction.
    - Use the nine-grid note when a fast-reading extraction table is needed.
-   - Build a question chain, keyword map, and golden-sentence bank before writing long summaries.
+   - Build a question chain, keyword map, and golden-sentence bank before writing long summaries. Make the chain an actual chain: each question links to the chapter/section that answers it, and its answer forces the next sharper question, so questions drive what to read and skip - not a flat list.
    - For learning-method books, apply `wang-zhuan-learning-system.md`: convert insights into question chains, keyword maps, cards, system diagrams, writing outputs, and practice feedback.
    - Identify the highest-value 20 percent of the book before writing detailed summaries.
 
@@ -126,7 +126,7 @@ Use this skill when the user provides or mentions a PDF ebook, book manuscript, 
 - When a book's value is a model, render the model as SVG: name the model, show inputs, mechanism, output, intervention point, and usage formula.
 - For repetitive single-concept books, optimize for concept compression and transfer, not chapter coverage.
 - Do not over-compress. Not every book should become one model; pick the read-mode gate first and let dense books keep their complexity.
-- Stay honest, not self-confirming. Every deep report must include a falsification pass and a reuse schedule (the verifier enforces both for Chinese reports). Understanding is measured by prediction, not by filling every template slot.
+- Stay honest, not self-confirming. Every deep report must include a question chain, a falsification pass, and a reuse schedule (the verifier enforces all three for Chinese reports). Understanding is measured by prediction, not by filling every template slot.
 - Use questions to decide what to read, keywords to decide what to extract, and gold sentences/paraphrases to decide what to remember.
 - For learning-method books, treat writing as thinking: if a claim cannot be written clearly, do not mark it as understood.
 - Separate card types: 观点卡 for how to think, 方法卡 for how to act, 案例卡 for concrete scenes.
