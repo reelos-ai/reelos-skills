@@ -23,6 +23,9 @@
 | 项目依赖 | `@remotion/player` | Web app 内预览 Remotion composition | `npm install` |
 | 项目依赖 | `ffmpeg-static` | 项目内 ffmpeg fallback | `npm install` |
 | 外部服务 | Giggle TTS API | 生成中文口播音频 | 设置 `GIGGLE_API_KEY` |
+| 外部服务 | Pexels API | 可选，搜索主题背景视频素材 | 设置 `PEXELS_API_KEY` |
+| 外部服务 | Pixabay API | 可选，搜索主题背景视频素材 | 设置 `PIXABAY_API_KEY` |
+| 外部服务 | Coverr API | 可选，搜索横屏背景视频素材 | 设置 `COVERR_API_KEY` |
 | Codex skill | `koubo-shengao-yuan` | 内容理解、口播审稿、分段 | skill 安装 |
 | Codex skill | `giggle-generation-speech` | Giggle TTS 调用能力 | skill 安装 |
 | Codex skill | `remotion-best-practices` | Remotion 工程约束 | skill 安装 |
@@ -164,6 +167,26 @@ clone_20260518_060330_483432
 ```
 
 voice id 可以写在生成脚本配置里，API key 不可以写进脚本。
+
+## 4.1 可选：配置主题素材 API
+
+只有需要主题素材增强、背景视频或真实纹理叠加时才需要这些 API key。不要把 key 写入代码、文档、`.env` 或提交历史。
+
+```bash
+export PEXELS_API_KEY="你的 pexels key"
+export PIXABAY_API_KEY="你的 pixabay key"
+export COVERR_API_KEY="你的 coverr key"
+```
+
+检查是否存在，不要打印完整 key：
+
+```bash
+test -n "$PEXELS_API_KEY" && echo "PEXELS_API_KEY is set"
+test -n "$PIXABAY_API_KEY" && echo "PIXABAY_API_KEY is set"
+test -n "$COVERR_API_KEY" && echo "COVERR_API_KEY is set"
+```
+
+如果没有这些 key，流程仍可运行；视觉设计师应跳过 API 检索，改用已有项目素材、公共版权网页手动下载素材，或不加外部素材层。
 
 ## 5. 安装基础 Codex skills
 
