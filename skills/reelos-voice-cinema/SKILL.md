@@ -35,6 +35,7 @@ Use this skill as an independent production lane that can be installed into any 
    - If making a TTS-driven narrated video, read `references/tts-timing.md`.
    - If building or modifying Remotion components, read `references/remotion-patterns.md`.
    - If visual quality matters, read `references/visual-motion.md`.
+   - If choosing subtitle typography, caption layout, karaoke/flash modes, or style samples, read `references/subtitle-style-system.md`.
 
 2. **Package the content**
    - Convert long text into short spoken scenes. One scene should carry one idea.
@@ -60,6 +61,7 @@ Use this skill as an independent production lane that can be installed into any 
    - Add npm scripts for TTS/render/still when useful.
    - Load local fonts through `@font-face` and wait for `document.fonts.ready` with `delayRender`.
    - Use clear Chinese text rendering: hard stroke, `paintOrder: 'stroke fill'`, dark backing layer, no blurry 3D shadow.
+   - For narrated Chinese videos, choose a subtitle style strategy before rendering: default to clear karaoke, then mix in flash, quote, editorial, or impact styles only where the script needs emphasis.
 
 6. **Review and render**
    - Run `npm run check`.
@@ -74,7 +76,7 @@ Use this skill as an independent production lane that can be installed into any 
 - Default horizontal size: `1920x1080`.
 - Default vertical size: `1080x1920`.
 - Recommended ReelOS TTS voice when the user does not specify another voice: `clone_20260518_060330_483432`.
-- Recommended subtitle style: karaoke/typewriter text with high-contrast fill, hard black stroke, and a dark background strip.
+- Recommended subtitle strategy: use clear karaoke/typewriter as the base, then selectively add kinetic flash, cinematic quote, editorial, or impact modes. See `references/subtitle-style-system.md`.
 - Recommended material principle: background videos/images carry the picture; MG should not replace real material unless the subject is abstract or brand/diagram-heavy.
 
 ## Completion Contract
@@ -84,6 +86,7 @@ When finished, report:
 - title, subtitle, slug, and composition id
 - number of TTS scenes and whether timing came from real audio
 - material lane used, and whether external/free assets were used
+- subtitle strategy used, especially if multiple modes are mixed
 - motion brief in one sentence
 - MP4 path and key still paths
 - verification commands run and result
