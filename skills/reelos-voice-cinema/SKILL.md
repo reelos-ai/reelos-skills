@@ -1,11 +1,11 @@
 ---
 name: reelos-voice-cinema
-description: ReelOS voice cinema production inside the Voice2Video project. Use when the user asks to turn Chinese scripts, articles, AI/Agent signals, philosophy/knowledge content, brand copy, pasted text, or TTS audio into a narrated Remotion video with real TTS timing, optional free external materials, subtitle and typography effects, motion graphics, keyframe review, and MP4 export.
+description: Independent ReelOS voice cinema production skill. Use when the user asks to turn Chinese scripts, articles, AI/Agent signals, philosophy/knowledge content, brand copy, pasted text, or TTS audio into a narrated Remotion video with real TTS timing, optional free external materials, subtitle and typography effects, motion graphics, keyframe review, and MP4 export.
 ---
 
 # ReelOS Voice Cinema
 
-Use this skill to produce videos in the `/Users/netseek/Documents/Voice2Video` project. Treat it as a project-scoped production lane: script → TTS → timing → optional materials → Remotion composition → keyframes → render → ffprobe validation.
+Use this skill as an independent production lane that can be installed into any Remotion-capable project: script -> TTS -> timing -> optional materials -> Remotion composition -> keyframes -> render -> ffprobe validation.
 
 ## Core Rules
 
@@ -16,12 +16,21 @@ Use this skill to produce videos in the `/Users/netseek/Documents/Voice2Video` p
 - Do not copy OpenMontage code. Only reuse the source-led idea: slots, providers, candidate scoring, manifest, and quality gates.
 - Do not save API keys in code or docs. Read TTS/API credentials from environment variables.
 - Do not use CSS animation or transition for video motion. Use `useCurrentFrame()`, `interpolate()`, `spring()`, and `Sequence`.
-- Keep generated outputs in `public/voiceover-*`, `public/materials/*`, `src/compositions/*Timings.ts`, `out/stills/*`, and `out/*.mp4`.
+- Keep generated outputs under the active project root, normally `public/voiceover-*`, `public/materials/*`, `src/compositions/*Timings.ts`, `out/stills/*`, and `out/*.mp4`.
+
+## Project Independence
+
+- Treat the current working directory as the project root unless the user gives another path.
+- Discover the host project before editing: inspect `package.json`, Remotion entry files, `src/Root.tsx` or equivalent composition registry, `public/`, `scripts/`, and any local docs.
+- Do not depend on `/Users/netseek/Documents/Voice2Video`, MoneyPrinterTurbo, or any other fixed local path.
+- If expected helper scripts do not exist, create small project-local equivalents instead of assuming a specific repository layout.
+- If the host project is not a Remotion project, first add or ask for the minimum Remotion scaffold needed for rendering.
+- Keep reusable workflow knowledge inside this skill; keep generated video assets, scripts, timings, and outputs inside the host project.
 
 ## Workflow
 
 1. **Read context**
-   - Inspect `package.json`, `src/Root.tsx`, existing compositions, and relevant `helloagents/wiki/*` files.
+   - Inspect `package.json`, Remotion entry files, existing compositions, and relevant local docs such as `helloagents/wiki/*` when present.
    - If making a material-driven vertical video, read `references/material-workflow.md`.
    - If making a TTS-driven narrated video, read `references/tts-timing.md`.
    - If building or modifying Remotion components, read `references/remotion-patterns.md`.
@@ -37,13 +46,13 @@ Use this skill to produce videos in the `/Users/netseek/Documents/Voice2Video` p
 
 3. **Generate TTS and timing**
    - Create or update `scripts/generate-{slug}-voiceover.py`.
-   - Use the user-specified voice when provided; otherwise use project default voice if appropriate.
+   - Use the user-specified voice when provided; otherwise use the host project's default voice if appropriate.
    - Generate per-scene MP3 files and `manifest.json`.
    - Write `src/compositions/{camelSlug}Timings.ts` from `ffprobe` durations.
 
 4. **Source materials when needed**
    - Define scene slots and keyword queries.
-   - Use `scripts/material_pipeline.py` patterns for providers, scoring, download validation, and manifest output.
+   - Reuse a host project material pipeline when present. If none exists, create a small project-local script with providers, scoring, download validation, and manifest output.
    - Record source URL, provider, dimensions, duration, and selected path.
 
 5. **Build Remotion composition**
@@ -64,9 +73,9 @@ Use this skill to produce videos in the `/Users/netseek/Documents/Voice2Video` p
 - Default FPS: `30`.
 - Default horizontal size: `1920x1080`.
 - Default vertical size: `1080x1920`.
-- Existing TTS voice often used by this project: `clone_20260518_060330_483432`.
-- Existing successful subtitle style: karaoke/typewriter text with high-contrast fill, hard black stroke, and a dark background strip.
-- Existing material principle: background videos/images carry the picture; MG should not replace real material unless the subject is abstract or brand/diagram-heavy.
+- Recommended ReelOS TTS voice when the user does not specify another voice: `clone_20260518_060330_483432`.
+- Recommended subtitle style: karaoke/typewriter text with high-contrast fill, hard black stroke, and a dark background strip.
+- Recommended material principle: background videos/images carry the picture; MG should not replace real material unless the subject is abstract or brand/diagram-heavy.
 
 ## Completion Contract
 

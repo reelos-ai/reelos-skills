@@ -8,7 +8,7 @@ Material-led videos should feel like edited footage with subtitles and light vis
 
 ## OpenMontage Lessons to Keep
 
-The project learned these ideas from OpenMontage:
+This skill keeps these source-led production ideas from OpenMontage:
 
 - source-led production
 - scene slots
@@ -23,7 +23,7 @@ Do not copy OpenMontage source code because of AGPLv3. Keep the implementation s
 
 ## Local Pipeline
 
-Use `scripts/material_pipeline.py` as the reusable layer. A material script should define:
+Use the host project's material pipeline when one already exists, for example `scripts/material_pipeline.py`. If the host project has no such script, create a small project-local pipeline instead of depending on a fixed repository. A material script should define:
 
 - slug and output directory
 - target orientation and resolution
