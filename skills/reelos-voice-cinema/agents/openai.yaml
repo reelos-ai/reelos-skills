@@ -1,0 +1,6 @@
+interface:
+  display_name: "ReelOS Voice Cinema"
+  short_description: "口播、素材、字幕动效到 Remotion 成片流水线"
+  default_prompt: "Use $reelos-voice-cinema to turn this Chinese script into a narrated cinematic Remotion video."
+policy:
+  allow_implicit_invocation: true
