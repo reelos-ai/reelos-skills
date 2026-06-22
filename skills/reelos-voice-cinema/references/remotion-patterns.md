@@ -70,6 +70,25 @@ Use Remotion frame math:
 
 Do not use CSS animation or transition. They are not reliable for deterministic video rendering.
 
+## Lottie and GSAP-Derived Motion
+
+Use Lottie when a short reusable vector animation is useful in Remotion:
+
+- verified `lottie.json` assets
+- icon loops, signal pulses, line draws, seals, or system cores
+- store under `public/lottie/{slug}/`
+- keep overlays short and readable around subtitles
+
+Use GSAP as a design/prototyping language, then translate to Remotion:
+
+- GSAP timeline labels -> frame offsets
+- duration seconds -> frame counts
+- stagger -> per-item frame delays
+- transform/opacity -> `interpolate()` values
+- easing -> Remotion easing or `spring()` settings
+
+Avoid depending on GSAP's browser runtime clock for final MP4 export unless the host project already has a proven deterministic setup.
+
 ## Still Review
 
 Export stills before full render:

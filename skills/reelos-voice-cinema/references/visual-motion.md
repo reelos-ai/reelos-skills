@@ -29,6 +29,19 @@ Use when content is abstract, technical, brand-oriented, or diagram-heavy. Remot
 
 Use when free footage sets the mood but diagrams are required for comprehension.
 
+### Motion Asset Layer
+
+Use when the video needs reusable animated details but not a full MG scene. Lottie and GSAP-derived motion can add:
+
+- signal pulses
+- icon loops
+- brush strokes
+- seal/stamp marks
+- system-core activation
+- short editorial transition marks
+
+Keep these assets secondary to narration and subtitles.
+
 ## Good Defaults
 
 - AI/Agent/engineering: dark digital space, restrained grid, cold white text, amber/cyan accents.
@@ -67,3 +80,5 @@ For AI Agent / systems content, prefer:
 - random flying labels with no information role
 - all-MG slideshow when the user asked for footage as background
 - blurry or 3D-looking Chinese title text
+- Lottie everywhere without information value
+- GSAP runtime motion in final Remotion exports unless deterministic rendering is already proven

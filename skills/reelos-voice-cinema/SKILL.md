@@ -13,6 +13,8 @@ Use this skill as an independent production lane that can be installed into any 
 - Keep Remotion responsible for text, subtitle effects, light motion graphics, diagrams, and final composition.
 - Prefer free external videos/images as background material when the user asks for素材感、画面不单一、低成本, or scene-based narration.
 - Use pure Remotion motion graphics when the content is abstract, technical, brand, AI Agent, causal systems, diagrams, or product-film style.
+- Use Lottie for reusable deterministic micro-animations such as icons, seals, strokes, signal pulses, loading cores, and decorative overlays.
+- Use GSAP knowledge for motion design, timeline planning, easing, stagger, and prototypes; translate final Remotion output back to frame-driven math unless a host project explicitly supports a deterministic GSAP render path.
 - Do not copy OpenMontage code. Only reuse the source-led idea: slots, providers, candidate scoring, manifest, and quality gates.
 - Do not save API keys in code or docs. Read TTS/API credentials from environment variables.
 - Do not use CSS animation or transition for video motion. Use `useCurrentFrame()`, `interpolate()`, `spring()`, and `Sequence`.
@@ -36,6 +38,7 @@ Use this skill as an independent production lane that can be installed into any 
    - If building or modifying Remotion components, read `references/remotion-patterns.md`.
    - If visual quality matters, read `references/visual-motion.md`.
    - If choosing subtitle typography, caption layout, karaoke/flash modes, or style samples, read `references/subtitle-style-system.md`.
+   - If adding Lottie assets, GSAP-inspired sequencing, animated icons, signal pulses, or advanced motion systems, read `references/motion-assets-lottie-gsap.md`.
 
 2. **Package the content**
    - Convert long text into short spoken scenes. One scene should carry one idea.
@@ -62,6 +65,7 @@ Use this skill as an independent production lane that can be installed into any 
    - Load local fonts through `@font-face` and wait for `document.fonts.ready` with `delayRender`.
    - Use clear Chinese text rendering: hard stroke, `paintOrder: 'stroke fill'`, dark backing layer, no blurry 3D shadow.
    - For narrated Chinese videos, choose a subtitle style strategy before rendering: default to clear karaoke, then mix in flash, quote, editorial, or impact styles only where the script needs emphasis.
+   - For Lottie/GSAP-enhanced videos, keep the output hierarchy clear: footage first for atmosphere, subtitles first for comprehension, Lottie/GSAP-style motion only as an accent or structured information layer.
 
 6. **Review and render**
    - Run `npm run check`.
@@ -78,6 +82,7 @@ Use this skill as an independent production lane that can be installed into any 
 - Recommended ReelOS TTS voice when the user does not specify another voice: `clone_20260518_060330_483432`.
 - Recommended subtitle strategy: use clear karaoke/typewriter as the base, then selectively add kinetic flash, cinematic quote, editorial, or impact modes. See `references/subtitle-style-system.md`.
 - Recommended material principle: background videos/images carry the picture; MG should not replace real material unless the subject is abstract or brand/diagram-heavy.
+- Recommended Lottie/GSAP principle: use Lottie JSON for portable loopable assets, and use GSAP timelines as design blueprints that are converted into Remotion frame math for final rendering.
 
 ## Completion Contract
 
@@ -87,6 +92,7 @@ When finished, report:
 - number of TTS scenes and whether timing came from real audio
 - material lane used, and whether external/free assets were used
 - subtitle strategy used, especially if multiple modes are mixed
+- Lottie or GSAP-derived motion assets used, if any
 - motion brief in one sentence
 - MP4 path and key still paths
 - verification commands run and result
