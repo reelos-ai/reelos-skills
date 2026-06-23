@@ -1,0 +1,8 @@
+interface:
+  display_name: "Reelos Design Taste"
+  short_description: "字体优先的审美方向、视觉系统与品味评审"
+  brand_color: "#C9372C"
+  default_prompt: "Use $reelos-design-taste for my project, typography first. Help me choose an aesthetic direction, font system, palette, layout, and taste guardrails."
+
+policy:
+  allow_implicit_invocation: true

@@ -9,6 +9,7 @@ This repository collects reusable skills for Chinese article workflows, visual t
 | Skill | Purpose | Status |
 | --- | --- | --- |
 | `reelos-jinghuan-illustrations` | Generate ReelOS-style Chinese article illustrations with the Jinghuan Worker IP. | active |
+| `reelos-design-taste` | Create, study, implement, and review typography-first visual taste systems for ReelOS design work. | active |
 | `reelos-video-production` | Produce Chinese narrated Remotion videos with TTS, timing sync, visual style presets, render, and validation. | active |
 
 ## Install
@@ -45,6 +46,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-video-production
 ```
 
+Install the design taste skill:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-design-taste
+```
+
 After installing, restart Codex so the new skill is loaded.
 
 ## Repository Layout
@@ -57,6 +66,12 @@ reelos-skills/
 │   │   ├── agents/
 │   │   ├── assets/
 │   │   └── references/
+│   ├── reelos-design-taste/
+│   │   ├── SKILL.md
+│   │   ├── agents/
+│   │   ├── examples/
+│   │   ├── references/
+│   │   └── scripts/
 │   └── reelos-video-production/
 │       ├── SKILL.md
 │       ├── agents/
