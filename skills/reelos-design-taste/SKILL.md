@@ -2,7 +2,7 @@
 name: reelos-design-taste
 description: "Reelos Design Taste creates, implements, studies, and reviews refined visual taste systems with typography first. Use when users ask for Reelos design taste, design taste, font pairing, typography, aesthetic direction, UI style, brand system, landing page design, image prompts, reference extraction, or Chinese, Western, Japanese, Zen, Nordic, Dunhuang, Indian, African, sci-fi, Fluid Infrastructure, Sonic Creator Studio, Performance Creative Agency, and frontier-tech aesthetics."
 license: MIT
-metadata: {"openclaw":{"emoji":"🎨","homepage":"https://www.storyclaw.com","version":"1.0.0","requires":{"bins":[]}}}
+metadata: {"openclaw":{"emoji":"🎨","homepage":"https://www.reelos.ai","version":"1.0.0","requires":{"bins":[]}}}
 ---
 
 # Reelos Design Taste
