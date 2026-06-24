@@ -1,0 +1,4 @@
+interface:
+  display_name: "SketchTalk 观点页"
+  short_description: "生成内容优先的竖屏观点页与极简哲思插画模板系统规范"
+  default_prompt: "Use $reelos-sketchtalk to 根据这段文字生成一张内容优先的竖屏观点页。"
