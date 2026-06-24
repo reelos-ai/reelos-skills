@@ -1,6 +1,6 @@
 interface:
   display_name: "ReelOS 口播视频生产"
-  short_description: "把中文文章、链接和观点稿稳定制作成 TTS 同步、视觉设计和动效导演驱动的 Remotion 口播视频"
-  default_prompt: "Use $reelos-video-production to 把这篇内容做成 ReelOS 风格口播视频，先确认口播稿、标题包装和风格选择，再完成视觉设计卡、动效导演 motion brief、TTS、音画同步、渲染和验收。"
+  short_description: "把中文文章、链接和观点稿稳定制作成 TTS 同步、视觉设计与动效导演审稿的 Remotion 口播视频"
+  default_prompt: "Use $reelos-video-production to 把这篇内容做成 ReelOS 风格口播视频，先确认口播稿、风格选择、视觉设计师和动效导演环节，扫描已有视觉上下文并产出视觉设计卡、motion brief 和 Beat Motion Map，再完成 TTS、音画同步、渲染和验收。"
 policy:
   allow_implicit_invocation: true

@@ -19,7 +19,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - 真实上下文优先：先学习项目已有视频、截图、配色、组件和用户明确喜欢的版本，再做新设计；既有成功风格是约束，不是参考图。
 - 主题入场：讲儒释道、哲学、心理学、AI、投研、品牌时，先识别内容主题，再选择 AI 生成主题图层或可授权素材层，把画面带入对应场域。
 - 视觉闭环：视觉设计不止选色，还要输出设计卡、关键帧、动效中间态和修正记录。
-- 动效导演：写代码前先定义全片主运动骨架、2-4 个运动章节、每章主运动对象和 TTS 绑定点；动效必须解释内容关系，不做随机装饰。
+- 动效导演：写代码前先定义全片主运动骨架、2-4 个运动章节、每章主运动对象、TTS 绑定点和 Beat Motion Map；动效必须解释内容关系，不做随机装饰。
 - 工程可复用：每条视频都沉淀为脚本、音频、timing、组件和验收记录，方便迭代下一条。
 
 ## 先读这些参考
@@ -30,7 +30,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - `references/video-production-workflow.md`：制作新视频时读取；包含设计思想、完整工作流、文件命名、命令、验收清单。
 - `references/style-presets.md`：用户要求选风格、换风格、去 AI 味、优化视觉时读取。
 - `references/visual-design-system.md`：每次开始 Remotion 合成前读取；包含视觉设计师职责、真实上下文扫描、视觉设计卡、受控配色、字体参考、外部视觉参考提炼、主题节奏和动效设计。
-- `references/motion-director.md`：科普、系统模型、因果链路、长视频或用户要求“增强动效/图表动效”时读取；包含 motion brief、运动章节、图表动效语法和动效验收。
+- `references/motion-director.md`：科普、系统模型、因果链路、长视频、SketchTalk 模板或用户要求“增强动效/图表动效”时读取；包含 motion brief、Beat Motion Map、transitions.dev/GSAP 转译规则、图表动效语法和动效验收。
 - `references/ai-image-layer-prompts.md`：儒释道、哲学、心理学、抽象方法论等主题需要 AI 图片模型生成背景层、金描线稿、主题插图时读取。
 - `references/material-sourcing.md`：需要主题素材增强、背景视频、真实纹理或外部素材叠加时读取；包含 Pexels、Pixabay、Coverr 检索策略和启用判断。
 - `references/tts-remotion-pattern.md`：新增 TTS 脚本、timing 文件或 Remotion 合成时读取。
@@ -57,10 +57,11 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 6. Timing 生成：写入 `{slug}Timings.ts`，作为音画同步唯一来源。
 7. 视觉设计：先扫描既有视觉上下文，再产出视觉设计卡，确定风格、色板、主题图层方向、字体层级和场景节奏；AI 主题图层默认作为背景替代，并先离线优化为 1920x1080 JPG/WebP；儒释道、哲学、心理学等抽象主题优先读取 `references/ai-image-layer-prompts.md`，真实场景/产品/新闻素材再读取 `references/material-sourcing.md`。
 8. 动效导演：读取 `references/motion-director.md`，产出 motion brief，定义全片主运动骨架、运动章节、每章主运动对象、镜头推进方式、图表动效和 TTS 绑定点。
-9. 分镜设计：每段画面只承载当前口播核心信息，同时绑定视觉设计卡和 motion brief。
-10. Remotion 合成：用 `Sequence`、`Html5Audio`、`staticFile`、`interpolate`；不用 CSS animation。
-11. 视觉与动效审查：导出关键帧和动效中间态，检查文字、遮挡、线框感、AI 味、颜色单调、动效不可见、素材贴图感、信息拥挤和运动骨架是否清楚。
-12. 导出验证：导出关键帧、跑 `tsc`、完整 render、用 `ffprobe` 验证音视频流。
+9. Beat Motion Map：把每个 TTS scene 拆成 beat cue，给每个 cue 绑定主字幕、画面动作、隐喻图状态和转场方式；SketchTalk、科普和长视频必须做这一步。
+10. 分镜设计：每段画面只承载当前口播核心信息，同时绑定视觉设计卡、motion brief 和 Beat Motion Map。
+11. Remotion 合成：用 `Sequence`、`Html5Audio`、`staticFile`、`interpolate`、`spring` 和本地 motion preset；不用 CSS animation/transition，不直接引入 GSAP runtime。
+12. 视觉与动效审查：导出关键帧和动效中间态，检查文字、遮挡、线框感、AI 味、颜色单调、动效不可见、素材贴图感、信息拥挤和运动骨架是否清楚。
+13. 导出验证：导出关键帧、跑 `tsc`、完整 render、用 `ffprobe` 验证音视频流。
 
 ## 默认决策
 
@@ -80,6 +81,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - 不要把 API key 写入脚本、README、文档或提交历史。
 - 不要提交 `node_modules/`、`out/`、`tmp/`、`.env`。
 - 不要使用 CSS transition / CSS animation / Tailwind animation。
+- 不要把 transitions.dev 的 CSS snippet 或 GSAP runtime 直接搬进 Remotion 合成；只学习其动效词典、时间线和 easing，再转译为帧驱动 motion preset。
 - 不要做空洞科技感、丑线框、过度渐变、模板化卡片堆叠。
 - 不要使用未授权 Pinterest/网页图片；外部图片必须来自免费/可授权素材站或公共版权来源，并在项目里记录来源、作者和许可。
 - 不要为了“高级感”机械添加图层；只有内容抽象、文化/宗教/心理/哲学/自然/空间氛围明显，或用户明确要求视觉增强时才启用主题图层。
@@ -95,6 +97,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - TTS 是否生成。
 - timing 是否来自真实音频。
 - motion brief 是否完成，主运动骨架和运动章节是什么。
+- Beat Motion Map 是否完成，字幕 cue、画面动作和隐喻图状态是否绑定到 TTS。
 - Remotion 合成 ID。
 - 导出 MP4 路径。
 - 已跑哪些验证：`tsc`、关键帧、`ffprobe`、Studio 预览。
