@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **ad-creative-15s** skill (v2.0.0) - a 15-second creative video script generator. Users provide a protagonist image + creative intent, and the system generates a complete 15s video script with cut rhythm, voiceover placement, and BGM suggestions.
+This is the **reelos-creative-15s** skill (v2.0.0) - a ReelOS-branded 15-second creative video script generator. Users provide a protagonist image + creative intent, and the system generates a complete 15s video script with cut rhythm, voiceover placement, BGM suggestions, and a stronger ReelOS brand memory point.
 
 **Dual Content Modes**:
 - **Mode 1 (Pure Creative, default)**: Art, philosophy, emotion, culture - no product placement
@@ -14,7 +14,7 @@ This is the **ad-creative-15s** skill (v2.0.0) - a 15-second creative video scri
 
 ### Core Purpose
 
-Generate professional 15-second video scripts following a strict 3-line output format:
+Generate professional ReelOS 15-second video scripts following a strict 3-line output format:
 
 1. **画面**: One-paragraph cut-by-cut description with time markers (0-2s/2-5s/5-9s/9-12s/12-15s)
 2. **旁白**: Core voiceover/tagline (Chinese: ≤22 chars, English: ≤15 words), or "无（纯视觉）"
@@ -72,7 +72,7 @@ ELSE → Mode 1 (Pure Creative, default)
 ## File Structure
 
 ```
-ad-creative-15s/
+reelos-creative-15s/
 ├── SKILL.md                  # Skill definition (main workflow)
 ├── README.md                 # User documentation (Chinese)
 ├── CLAUDE.md                 # This file - developer guide
@@ -314,4 +314,4 @@ Users invoke this skill by:
 - Requesting video/ad script generation
 - Asking for short video creative/script
 - Providing creative brief + image
-- Using `/ad-creative-15s` command
+- Using `/reelos-creative-15s` command

@@ -25,7 +25,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 | `reelos-design-taste` | You want design taste review, typography direction, cultural visual systems, or reference extraction. | Design decisions, style systems, review notes, UI/visual guidance |
 | `reelos-jinghuan-illustrations` | You want ReelOS-style Chinese article illustrations or brand article visuals. | Illustration prompts, article figures, cover/banner guidance |
 | `reelos-voice-cinema` | You want an independent voice-cinema style Remotion video workflow. | Narrated video, subtitle effects, motion material guidance |
-| `ad-creative-15s` | You want to turn one image or creative brief into a 15-second short-form creative video script. | Shot-by-shot script, voiceover beats, BGM and sound design guidance |
+| `reelos-creative-15s` | You want a ReelOS-branded 15-second creative video script from one image or creative brief. | Brand-forward shot script, voiceover beats, BGM and sound design guidance |
 | `pdf-book-accelerator` | You want to skim, summarize, study, or extract knowledge from a PDF book. | Chapter notes, summaries, action lists, review cards |
 
 ## Recommended Install Order
@@ -72,12 +72,12 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/koubo-shengao-yuan
 ```
 
-Install the 15-second ad creative script generator:
+Install the ReelOS 15-second creative script generator:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo reelos-ai/reelos-skills \
-  --path skills/ad-creative-15s
+  --path skills/reelos-creative-15s
 ```
 
 Install multiple skills at once:
@@ -91,7 +91,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
     skills/reelos-sketchtalk \
     skills/reelos-design-taste \
     skills/reelos-jinghuan-illustrations \
-    skills/ad-creative-15s
+    skills/reelos-creative-15s
 ```
 
 Install from a specific branch or tag:
