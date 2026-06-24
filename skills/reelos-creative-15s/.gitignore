@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Backup files
+*~
+*.bak
+*.swp
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# User generated content (if storing generated scripts locally)
+outputs/
+generated/
