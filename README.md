@@ -1,44 +1,52 @@
 # ReelOS Skills
 
-Experimental Codex / OpenClaw skills for ReelOS workflows.
+ReelOS Skills is a collection of reusable Codex skills for Chinese content production, visual design, illustration, reading workflows, and narrated video creation.
 
-This repository collects reusable skills for Chinese article workflows, visual thinking, product operations, and ReelOS-specific creative systems.
+The repository is organized as a skill library. Each folder under `skills/` is an independent skill with its own `SKILL.md`, agent metadata, references, examples, scripts, or assets.
 
-## Skills
+## What This Repo Is For
 
-| Skill | Purpose | Status |
+Use this repo when you want Codex to handle repeatable ReelOS workflows with stable quality:
+
+- turn Chinese articles, pasted scripts, or links into narrated Remotion videos;
+- create SketchTalk-style vertical thought posters and video cover systems;
+- generate ReelOS-style Chinese article illustrations;
+- review or build refined visual taste systems;
+- accelerate PDF reading and knowledge extraction;
+- keep production workflows, visual rules, and motion rules as reusable skills instead of one-off prompts.
+
+## Available Skills
+
+| Skill | Use when | Main output |
 | --- | --- | --- |
-| `reelos-jinghuan-illustrations` | Generate ReelOS-style Chinese article illustrations with the Jinghuan Worker IP. | active |
-| `reelos-design-taste` | Create, study, implement, and review typography-first visual taste systems for ReelOS design work. | active |
-| `reelos-video-production` | Produce Chinese narrated Remotion videos with TTS, timing sync, visual style presets, render, and validation. | active |
+| `reelos-video-production` | You want a Chinese narrated Remotion video with TTS, timing sync, visual design, motion direction, render, and validation. | MP4 video, TTS assets, timing files, Remotion composition, review frames |
+| `reelos-sketchtalk` | You want a SketchTalk / vertical thought poster / strong viewpoint cover / black-red-white minimalist visual system. | 9:16 cover images, storyboard pages, metaphor illustration prompts |
+| `reelos-design-taste` | You want design taste review, typography direction, cultural visual systems, or reference extraction. | Design decisions, style systems, review notes, UI/visual guidance |
+| `reelos-jinghuan-illustrations` | You want ReelOS-style Chinese article illustrations or brand article visuals. | Illustration prompts, article figures, cover/banner guidance |
+| `reelos-voice-cinema` | You want an independent voice-cinema style Remotion video workflow. | Narrated video, subtitle effects, motion material guidance |
+| `pdf-book-accelerator` | You want to skim, summarize, study, or extract knowledge from a PDF book. | Chapter notes, summaries, action lists, review cards |
 
-## Install
+## Recommended Install Order
 
-Each folder under `skills/` is a self-contained skill. Skill-specific setup, workflow, and design documentation should live inside that skill, usually under `references/`.
+For ordinary design or illustration work, install only the skill you need.
 
-Install a skill from this repository with the Codex skill installer:
+For video production, install dependencies in this order:
 
-```bash
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-  --repo <owner>/reelos-skills \
-  --path skills/reelos-jinghuan-illustrations
-```
+1. System tools: Node.js, pnpm/npm, FFmpeg, and a working Remotion project.
+2. Base video skills: Remotion guidance and any TTS skill used in your Codex environment.
+3. Optional motion references: transitions.dev / GSAP skills if you want richer motion vocabulary.
+4. ReelOS skills from this repository.
+5. Restart Codex after installation so new skills are loaded.
 
-Replace `<owner>` with the GitHub account or organization that hosts this repository.
-
-For the video production skill, install system programs, Remotion project dependencies, TTS credentials, and base skills first. The detailed dependency map and install commands are documented in:
+The detailed video dependency map lives in:
 
 ```text
 skills/reelos-video-production/references/setup-dependencies.md
 ```
 
-The design principles, full production workflow, generated artifacts, and validation checklist are documented in:
+## Install A Skill
 
-```text
-skills/reelos-video-production/references/video-production-workflow.md
-```
-
-Then install:
+From any local directory, run the Codex skill installer:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
@@ -46,53 +54,310 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-video-production
 ```
 
-Install the design taste skill:
+Install SketchTalk:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo reelos-ai/reelos-skills \
-  --path skills/reelos-design-taste
+  --path skills/reelos-sketchtalk
 ```
 
-After installing, restart Codex so the new skill is loaded.
+Install multiple skills at once:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path \
+    skills/reelos-video-production \
+    skills/reelos-sketchtalk \
+    skills/reelos-design-taste \
+    skills/reelos-jinghuan-illustrations
+```
+
+Install from a specific branch or tag:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --ref main \
+  --path skills/reelos-video-production
+```
+
+After installing, restart Codex.
+
+## Update A Skill
+
+Re-run the same install command. The installer will overwrite the local installed copy with the version from GitHub.
+
+Example:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-video-production
+```
+
+If Codex does not pick up the update, restart Codex and confirm the skill appears in the available skills list.
+
+## How To Invoke Skills In Codex
+
+You can call a skill explicitly by name:
+
+```text
+Use $reelos-video-production to turn this script into a narrated video.
+```
+
+```text
+Use $reelos-sketchtalk to create a vertical cover and storyboard for this episode.
+```
+
+You can also describe the task naturally. Codex can select the skill when the request matches the skill description:
+
+```text
+把这篇文章做成口播视频，TTS 和画面要同步。
+```
+
+```text
+按深度进化 Theo 那种黑红白强观点风格，给我做一个竖屏封面。
+```
+
+Explicit invocation is still recommended when you want deterministic behavior.
+
+## Video Production Workflow
+
+Use `reelos-video-production` for full narrated videos.
+
+The intended workflow is:
+
+1. Confirm the voiceover script.
+2. Confirm title packaging and style selection.
+3. Run the voiceover review step.
+4. Generate or update TTS.
+5. Generate timing from real audio.
+6. Create the visual design card.
+7. Create the motion brief.
+8. Create the Beat Motion Map.
+9. Build or update the Remotion composition.
+10. Export keyframes for review.
+11. Render MP4.
+12. Validate audio/video streams and visible output.
+
+Important rules:
+
+- If the user changes the voiceover script, regenerate TTS and timing. Do not only change on-screen text.
+- Screen text, beat captions, footer notes, and metaphor graphics must all follow the latest script.
+- The first frame should be a usable cover frame when the template requires it.
+- Motion should explain content relationships, not add random decoration.
+- For SketchTalk-style videos, the main beat caption, top red prompt, and footer note must not repeat the same sentence.
+
+Detailed workflow:
+
+```text
+skills/reelos-video-production/references/video-production-workflow.md
+```
+
+Motion direction:
+
+```text
+skills/reelos-video-production/references/motion-director.md
+```
+
+Visual design system:
+
+```text
+skills/reelos-video-production/references/visual-design-system.md
+```
+
+## SketchTalk Workflow
+
+Use `reelos-sketchtalk` for 9:16 vertical thought posters, cover images, and storyboard pages.
+
+Best suited for:
+
+- philosophy / psychology / cognition content;
+- strong viewpoint covers;
+- black-red-white minimalist layouts;
+- “one sentence, one visual metaphor” storyboards;
+- video cover frames for `reelos-video-production`.
+
+Default visual structure:
+
+```text
+[top series / episode metadata]
+
+[red premise sentence]
+
+[large black main statement]
+[thin English subtitle]
+
+[minimal metaphor illustration in lower third]
+
+[small footer keywords]
+```
+
+Read the layout reference when changing the template:
+
+```text
+skills/reelos-sketchtalk/references/layout-template.md
+```
+
+Read the metaphor system when designing lower-third illustrations:
+
+```text
+skills/reelos-sketchtalk/references/metaphor-system.md
+```
+
+## How `reelos-video-production` And `reelos-sketchtalk` Work Together
+
+Use them together when producing the current SketchTalk-style narrated videos.
+
+Recommended division:
+
+- `reelos-sketchtalk` defines the cover, typography hierarchy, lower-third metaphor, and black-red-white visual grammar.
+- `reelos-video-production` turns the script into TTS-synced Remotion video, applies timing, motion, beat captions, render, and validation.
+
+Practical flow:
+
+1. Use `reelos-sketchtalk` to define the cover and visual metaphor system.
+2. Use `reelos-video-production` to generate TTS, timing, Beat Motion Map, and MP4.
+3. If the video looks repetitive, update the Beat Motion Map and lower-third metaphor states.
+4. If the script changes, rerun TTS/timing before rendering again.
+
+## Example Prompts
+
+Full narrated video:
+
+```text
+Use $reelos-video-production.
+把下面这篇稿子做成 3 分钟口播视频。
+要求：TTS 同步、画面不要重复、底部隐喻图要跟随口播变化、导出 MP4。
+```
+
+SketchTalk cover:
+
+```text
+Use $reelos-sketchtalk.
+给《空见心力》第5集做一个竖屏封面。
+主题：每天，问自己一个更好的问题。
+风格：白底、黑红、强观点、底部极简隐喻图。
+```
+
+Visual review:
+
+```text
+Use $reelos-design-taste.
+Review this video frame and tell me whether typography, spacing, and color hierarchy are working.
+```
+
+Article illustration:
+
+```text
+Use $reelos-jinghuan-illustrations.
+为这篇 ReelOS 文章生成 3 张正文配图建议和 heroImage 方案。
+```
+
+PDF reading:
+
+```text
+Use $pdf-book-accelerator.
+帮我把这本 PDF 拆成章节摘要、关键问题、行动清单和复习卡片。
+```
 
 ## Repository Layout
 
 ```text
 reelos-skills/
+├── README.md
 ├── skills/
-│   ├── reelos-jinghuan-illustrations/
-│   │   ├── SKILL.md
-│   │   ├── agents/
-│   │   ├── assets/
-│   │   └── references/
+│   ├── pdf-book-accelerator/
 │   ├── reelos-design-taste/
-│   │   ├── SKILL.md
-│   │   ├── agents/
-│   │   ├── examples/
-│   │   ├── references/
-│   │   └── scripts/
-│   └── reelos-video-production/
-│       ├── SKILL.md
-│       ├── agents/
-│       └── references/
-├── docs/
-│   └── skill-authoring.md
-└── examples/
-    └── README.md
+│   ├── reelos-jinghuan-illustrations/
+│   ├── reelos-sketchtalk/
+│   ├── reelos-video-production/
+│   └── reelos-voice-cinema/
+└── .gitignore
 ```
 
-## Naming
+Common skill structure:
 
-Use the `reelos-` prefix for all public skills.
+```text
+skill-name/
+├── SKILL.md              # Required skill entry point
+├── agents/openai.yaml    # Optional display metadata
+├── references/           # Detailed instructions and reusable rules
+├── examples/             # Optional usage examples
+├── scripts/              # Optional helper scripts
+└── assets/               # Optional reference assets
+```
 
-Good examples:
+## Authoring Rules
 
-- `reelos-jinghuan-illustrations`
-- `reelos-article-refiner`
-- `reelos-workflow-designer`
-- `reelos-brand-auditor`
+When adding or updating a skill:
+
+- Keep each skill self-contained.
+- Put the entry behavior in `SKILL.md`.
+- Put long guidance in `references/`.
+- Put examples in `examples/`.
+- Put helper scripts in `scripts/`.
+- Avoid machine-specific paths in committed files.
+- Do not commit local install artifacts such as `.agents/` or `skills-lock.json`.
+- Do not commit secrets, API keys, generated videos, `node_modules/`, or temporary render output.
+
+## Git Workflow
+
+Recommended workflow for updates:
+
+```bash
+git switch main
+git pull origin main
+git switch -c codex/update-skill-name
+# edit skill files
+git diff --check
+git add skills/<skill-name> README.md
+git commit -m "Update <skill-name> skill"
+git push -u origin codex/update-skill-name
+```
+
+Then open a pull request.
+
+For small README or ignore-file updates, direct commits to `main` are acceptable if the repository owner allows it.
+
+## Troubleshooting
+
+### The skill does not appear in Codex
+
+Reinstall the skill, then restart Codex.
+
+### The wrong version is being used
+
+Re-run the installer from `main`, then restart Codex:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --ref main \
+  --path skills/reelos-video-production
+```
+
+### Local generated files appear in `git status`
+
+They should be ignored by `.gitignore`.
+
+If they still appear, check whether they were already tracked:
+
+```bash
+git status --short
+git check-ignore -v .agents skills-lock.json
+```
+
+### Video output is not synchronized
+
+For `reelos-video-production`, regenerate TTS and timing from the latest script. Do not reuse old timing after rewriting the voiceover.
+
+### SketchTalk frames feel repetitive
+
+Update the Beat Motion Map and lower-third metaphor states. Each beat should change at least one visible element such as text, path, red point, node state, or illustration position.
 
 ## License
 
-Add a license before publishing if you want others to reuse these skills.
+Add a license before publishing this repository for broad external reuse.
