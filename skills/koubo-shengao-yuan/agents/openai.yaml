@@ -1,0 +1,4 @@
+interface:
+  display_name: "口播审稿员"
+  short_description: "先确认口播稿和默认战略作战室风，再串联 TTS、分镜、同步、渲染验证。"
+  default_prompt: "请用口播审稿员流程，先确认口播稿内容和视觉风格，默认推荐战略作战室风。"

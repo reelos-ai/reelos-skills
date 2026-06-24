@@ -19,6 +19,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 
 | Skill | Use when | Main output |
 | --- | --- | --- |
+| `koubo-shengao-yuan` | You want to turn written Chinese material into an energetic self-media narration script before TTS or video production. | Reviewed narration script, TTS segmentation guidance, video workflow checks |
 | `reelos-video-production` | You want a Chinese narrated Remotion video with TTS, timing sync, visual design, motion direction, render, and validation. | MP4 video, TTS assets, timing files, Remotion composition, review frames |
 | `reelos-sketchtalk` | You want a SketchTalk / vertical thought poster / strong viewpoint cover / black-red-white minimalist visual system. | 9:16 cover images, storyboard pages, metaphor illustration prompts |
 | `reelos-design-taste` | You want design taste review, typography direction, cultural visual systems, or reference extraction. | Design decisions, style systems, review notes, UI/visual guidance |
@@ -62,12 +63,21 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-sketchtalk
 ```
 
+Install the narration reviewer:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/koubo-shengao-yuan
+```
+
 Install multiple skills at once:
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo reelos-ai/reelos-skills \
   --path \
+    skills/koubo-shengao-yuan \
     skills/reelos-video-production \
     skills/reelos-sketchtalk \
     skills/reelos-design-taste \
@@ -104,6 +114,10 @@ If Codex does not pick up the update, restart Codex and confirm the skill appear
 You can call a skill explicitly by name:
 
 ```text
+Use $koubo-shengao-yuan to rewrite this article into a natural Chinese narration script.
+```
+
+```text
 Use $reelos-video-production to turn this script into a narrated video.
 ```
 
@@ -129,18 +143,21 @@ Use `reelos-video-production` for full narrated videos.
 
 The intended workflow is:
 
-1. Confirm the voiceover script.
-2. Confirm title packaging and style selection.
-3. Run the voiceover review step.
-4. Generate or update TTS.
-5. Generate timing from real audio.
-6. Create the visual design card.
-7. Create the motion brief.
-8. Create the Beat Motion Map.
-9. Build or update the Remotion composition.
-10. Export keyframes for review.
-11. Render MP4.
-12. Validate audio/video streams and visible output.
+1. Review the source with `koubo-shengao-yuan` when the input is article-like or too written.
+2. Confirm the voiceover script.
+3. Confirm title packaging and style selection.
+4. Run the voiceover review step.
+5. Generate or update TTS.
+6. Generate timing from real audio.
+7. Create the visual design card.
+8. Create the motion brief.
+9. Create the Beat Motion Map.
+10. Build or update the Remotion composition.
+11. Export keyframes for review.
+12. Render MP4.
+13. Validate audio/video streams and visible output.
+
+Older workflow summaries may start from script confirmation. In practice, if the user gives raw article text, run the narration reviewer first.
 
 Important rules:
 
@@ -149,6 +166,27 @@ Important rules:
 - The first frame should be a usable cover frame when the template requires it.
 - Motion should explain content relationships, not add random decoration.
 - For SketchTalk-style videos, the main beat caption, top red prompt, and footer note must not repeat the same sentence.
+
+## Narration Review Workflow
+
+Use `koubo-shengao-yuan` before video production when the source is a long article, formal essay, pasted viewpoint text, or rough draft.
+
+It is responsible for:
+
+1. Understanding the source content and extracting the core point.
+2. Identifying the target audience, tone, emotional intensity, and one sentence the audience should remember.
+3. Rewriting written language into natural spoken Chinese.
+4. Strengthening the hook, rhythm, transitions, examples, and final question.
+5. Splitting the script into TTS-friendly segments.
+6. Checking whether the script is ready for `reelos-video-production`.
+
+Default style:
+
+```text
+自媒体人口播风格，热情、接地气、有经验，像一个博主在镜头前自然表达。
+```
+
+Use it alone when the user only asks for a polished narration script. Use it together with `reelos-video-production` when the final deliverable is a video.
 
 Detailed workflow:
 
@@ -228,9 +266,16 @@ Practical flow:
 Full narrated video:
 
 ```text
-Use $reelos-video-production.
+Use $koubo-shengao-yuan and then $reelos-video-production.
 把下面这篇稿子做成 3 分钟口播视频。
 要求：TTS 同步、画面不要重复、底部隐喻图要跟随口播变化、导出 MP4。
+```
+
+Narration review only:
+
+```text
+Use $koubo-shengao-yuan.
+把这篇文章改成 3 分钟以内的自媒体口播稿，语言要口语化、有停顿、有互动感。
 ```
 
 SketchTalk cover:
@@ -269,6 +314,7 @@ Use $pdf-book-accelerator.
 reelos-skills/
 ├── README.md
 ├── skills/
+│   ├── koubo-shengao-yuan/
 │   ├── pdf-book-accelerator/
 │   ├── reelos-design-taste/
 │   ├── reelos-jinghuan-illustrations/
