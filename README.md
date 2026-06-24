@@ -122,6 +122,11 @@ Use $reelos-video-production to turn this script into a narrated video.
 ```
 
 ```text
+Use $reelos-video-production.
+用 ReelOS SketchTalk｜黑红白强观点哲思风制作口播视频。
+```
+
+```text
 Use $reelos-sketchtalk to create a vertical cover and storyboard for this episode.
 ```
 
@@ -269,6 +274,14 @@ Full narrated video:
 Use $koubo-shengao-yuan and then $reelos-video-production.
 把下面这篇稿子做成 3 分钟口播视频。
 要求：TTS 同步、画面不要重复、底部隐喻图要跟随口播变化、导出 MP4。
+```
+
+SketchTalk narrated video:
+
+```text
+Use $reelos-video-production.
+用 ReelOS SketchTalk｜黑红白强观点哲思风制作口播视频。
+要求：第一帧就是封面，白底黑红灰，主 beat 字幕跟随真实音频，底部隐喻图随每个 beat 变化。
 ```
 
 Narration review only:

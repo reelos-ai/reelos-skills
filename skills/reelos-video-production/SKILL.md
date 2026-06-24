@@ -1,6 +1,6 @@
 ---
 name: reelos-video-production
-description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos, especially when the user asks for 口播视频, TTS, 音画同步, 视觉设计师, 战略作战室风, 黑板推演风, or a stable repeatable video production workflow.
+description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos, especially when the user asks for 口播视频, TTS, 音画同步, 视觉设计师, 战略作战室风, 黑板推演风, ReelOS SketchTalk, 黑红白强观点哲思风, or a stable repeatable video production workflow.
 ---
 
 # ReelOS 口播视频生产
@@ -8,6 +8,38 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 ## 核心定位
 
 把中文文章、链接、粘贴文本或观点稿做成稳定可复用的 Remotion 口播视频。核心原则是：先把内容审成适合真人讲述的口播稿，再生成真实 TTS 音频，用真实音频时长反写 timing，然后由视觉设计师绑定设计上下文、色板和版式，再由动效导演定义全片运动骨架，最后让 Remotion 画面跟随 timing 文件。
+
+## 模式路由
+
+### SketchTalk 强观点口播视频模式
+
+当用户出现以下任一表达时，直接启用 SketchTalk 视频模式：
+
+- `ReelOS SketchTalk`
+- `SketchTalk 强观点口播风`
+- `黑红白强观点哲思风`
+- `白底黑红`
+- `强观点大字`
+- `底部隐喻图`
+- `beat 字幕`
+- `空见心力`
+- 要求参考“深度进化 Theo”这类白底、黑红、强观点、极简隐喻图的竖屏观点视频
+
+执行路径：
+
+1. 如果输入是长文章、书面稿或粗稿，先用 `koubo-shengao-yuan` 审成口播稿；如果用户已经给出确认稿，以用户稿为准。
+2. 用 SketchTalk 视觉语法设计封面、字体层级、底部隐喻图和 footer 关键词；必要时读取 `reelos-sketchtalk` 的 layout/metaphor 规则。
+3. 仍由 `reelos-video-production` 负责 TTS、真实音频 timing、Beat Motion Map、Remotion 合成、关键帧审查、MP4 导出和验证。
+
+硬性要求：
+
+- 第一帧必须是可直接当封面的完整画面，不要从空白或半入场开始。
+- 默认画面语言是白底、黑、暖红、灰；不要引入额外高饱和色。
+- 文案层级必须去重：顶部红色命题句负责场景/问题提示，中间主 beat 负责当前口播短句，底部辅助只做方法名、章节名或进度提示。
+- 主 beat 字幕必须比封面主标题低一级，不能压住底部隐喻图。
+- 底部隐喻图必须随口播 beat 发生轻微变化，例如路径显影、红点激活、节点状态变化、2%-4% 微缩放或轻微位移。
+- 用户修改口播稿后，必须重跑 TTS、manifest/timing、Beat Motion Map、主字幕、footer 和隐喻图状态；不能复用旧音频硬凑新稿。
+- beat 字幕和画面动作以真实音频 timing 校准；如果发现偏差，优先调整 cue offset，而不是靠视觉猜时长。
 
 ## 设计思想
 
