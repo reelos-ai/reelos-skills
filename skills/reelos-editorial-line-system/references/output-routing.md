@@ -6,6 +6,7 @@ Use this reference to decide what to produce.
 
 - Text without requested format -> create a PNG editorial image through `image_gen`.
 - Text plus "图片", "海报", "PNG", "做成图", "头图", or "配图" -> create the PNG directly.
+- Long analysis, article, signal, playbook, architecture explanation, or "一张图说清楚/一张图把事情说清楚/帮助读者理解" -> create an editorial explainer board. Prefer HTML/SVG or text-safe layout when Chinese labels, exact terms, formulas, or many annotations must be readable.
 - Image input -> use image generation or editing directly, preserving subject and composition.
 - Brand only -> infer the brand soul and create a PNG visual system board unless the user asks only for a prompt.
 - Campaign, product, or app -> create a multi-application system board: magazine spread, product card, website hero, mobile UI, packaging, and character sheet as relevant.
@@ -28,6 +29,14 @@ For long analysis, also extract:
 3. Key actors.
 4. Bottlenecks or turning points.
 5. Consequence or conclusion.
+
+Default layout for long analysis:
+
+1. **Old world**: what the previous operating logic looked like, plus 2-4 concrete failure modes.
+2. **Turning point**: the arrow, fracture, migration, bottleneck, or new constraint that forces the change.
+3. **New world**: the mechanism that now matters, shown as a loop, orbit, operating layer, control panel, or system map.
+4. **Component rail**: the production ingredients that make the new mechanism work.
+5. **Judgment formula**: one bottom strip or equation that the viewer should remember.
 
 ## Brand Or Product Input
 

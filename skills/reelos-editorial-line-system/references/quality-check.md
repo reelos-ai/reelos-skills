@@ -7,6 +7,7 @@ Before final output, check the result against this list.
 - Can a viewer understand the core matter in one glance?
 - Does the image answer a central question, not merely decorate a topic?
 - Is there a clear old logic, new logic, mechanism, and takeaway when the input is analytical?
+- For article/signals/playbook explainers, does the image show before/after contrast, the turning point, the core mechanism, the production components, and a bottom-line judgment?
 - Did the output transform the input into a visual system, not merely paste the original prompt?
 - For complex analysis, is the causal chain visible?
 - Is the central conflict clear in one glance?

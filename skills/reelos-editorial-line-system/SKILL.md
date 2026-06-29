@@ -2,7 +2,7 @@
 name: reelos-editorial-line-system
 description: Convert text, images, brands, product ideas, UI concepts, campaigns, or analysis articles into a ReelOS-flavored modern editorial black-and-white line-art visual system whose core claim is "one image should make the matter clear." Use this skill whenever the user asks for ReelOS editorial illustrations, minimalist line-art PNG posters, article lead images, explainers, brand visual boards, magazine spreads, website hero visuals, mobile UI mockups, packaging visuals, or "make this into a picture" in a monochrome line-art style with sparse pastel accents. Default to image generation for visual requests and prioritize clarity of argument over decoration.
 user_invocable: true
-version: "1.5.0"
+version: "1.5.1"
 ---
 
 # ReelOS Editorial Line System
@@ -55,6 +55,22 @@ For news analysis, business commentary, policy writing, or technical arguments, 
 4. Put the conclusion in a short, readable bottom strip or headline.
 5. Use labels sparingly; the scene should carry the reasoning.
 
+### Default Explainer Structure
+
+When the user asks for an article/signals/playbook visual, says "一张图说清楚", "一张图把事情说清楚", "帮助读者理解", "架构解析", or provides a long analytical article, default to an **editorial explainer board**, not a simple flowchart.
+
+The preferred default structure is:
+
+1. **Before / after split**: left side shows the old operating logic and its failure modes; right side shows the new operating logic and its working mechanism.
+2. **Central transition**: place the turning point, migration arrow, or "from X to Y" claim between the two worlds.
+3. **Mechanism core**: show the new system as a visible engine, orbit, loop, map, control panel, or operating layer.
+4. **Component rail**: list only the key production components, actors, constraints, or resources that make the new system real.
+5. **Bottom formula**: end with a short, memorable equation or conclusion strip that compresses the article's judgment.
+
+Do not stop at a clean diagram if the article contains a thesis, conflict, and judgment. A good result should feel like a magazine-grade analytical spread: the reader should understand the old logic, the new logic, the mechanism, and the conclusion in one glance.
+
+Use **HTML/SVG / text-safe** output for this default structure when the visual needs crisp Chinese, many labels, exact article terminology, or a reusable website asset. Use PNG generation only when text is sparse or the user explicitly prefers a raster poster.
+
 Before generating, internally answer:
 
 - What changed?
@@ -65,6 +81,7 @@ Before generating, internally answer:
 
 Good structures for complex text:
 
+- **Editorial explainer board**: before/after split + central mechanism + component rail + bottom formula.
 - **Cause-and-effect flow**: `thesis -> conflict -> bottleneck -> consequence`.
 - **Three-crack explainer**: three tensions around one central system.
 - **Before/after split**: old operating logic versus new operating logic.
