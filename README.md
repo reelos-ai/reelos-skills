@@ -81,6 +81,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-creative-15s
 ```
 
+Install the ReelOS editorial line system:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-editorial-line-system
+```
+
 Install multiple skills at once:
 
 ```bash
