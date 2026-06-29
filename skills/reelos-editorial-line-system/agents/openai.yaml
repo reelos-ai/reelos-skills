@@ -1,0 +1,8 @@
+interface:
+  display_name: "ReelOS Editorial Line System"
+  short_description: "一张图把文章、观点和 AI/科技分析讲清楚的 ReelOS 线稿视觉系统"
+  brand_color: "#F97316"
+  default_prompt: "Use $reelos-editorial-line-system to turn this article or idea into one clear ReelOS editorial explainer image. Default to ReelOS Lab Orbit unless another style mode is specified."
+
+policy:
+  allow_implicit_invocation: true

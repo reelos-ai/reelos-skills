@@ -23,6 +23,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 | `reelos-video-production` | You want a Chinese narrated Remotion video with TTS, timing sync, visual design, motion direction, render, and validation. | MP4 video, TTS assets, timing files, Remotion composition, review frames |
 | `reelos-sketchtalk` | You want a SketchTalk / vertical thought poster / strong viewpoint cover / black-red-white minimalist visual system. | 9:16 cover images, storyboard pages, metaphor illustration prompts |
 | `reelos-design-taste` | You want design taste review, typography direction, cultural visual systems, or reference extraction. | Design decisions, style systems, review notes, UI/visual guidance |
+| `reelos-editorial-line-system` | You want one image to make an article, argument, product idea, or AI/tech analysis clear in a ReelOS editorial line-art style. | Article lead images, explainer visuals, style-mode prompts, text-safe visual systems |
 | `reelos-jinghuan-illustrations` | You want ReelOS-style Chinese article illustrations or brand article visuals. | Illustration prompts, article figures, cover/banner guidance |
 | `reelos-voice-cinema` | You want an independent voice-cinema style Remotion video workflow. | Narrated video, subtitle effects, motion material guidance |
 | `reelos-creative-15s` | You want a ReelOS-branded 15-second creative video script from one image or creative brief. | Brand-forward shot script, voiceover beats, BGM and sound design guidance |
@@ -80,6 +81,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-creative-15s
 ```
 
+Install the ReelOS editorial line system:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/reelos-editorial-line-system
+```
+
 Install multiple skills at once:
 
 ```bash
@@ -90,6 +99,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
     skills/reelos-video-production \
     skills/reelos-sketchtalk \
     skills/reelos-design-taste \
+    skills/reelos-editorial-line-system \
     skills/reelos-jinghuan-illustrations \
     skills/reelos-creative-15s
 ```
@@ -138,6 +148,10 @@ Use $reelos-video-production.
 
 ```text
 Use $reelos-sketchtalk to create a vertical cover and storyboard for this episode.
+```
+
+```text
+Use $reelos-editorial-line-system to turn this article into one image that makes the argument clear.
 ```
 
 You can also describe the task naturally. Codex can select the skill when the request matches the skill description:
