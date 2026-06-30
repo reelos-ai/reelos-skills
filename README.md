@@ -1,5 +1,7 @@
 # ReelOS Skills
 
+[中文](README.zh-CN.md) | English
+
 ReelOS Skills is a collection of reusable Codex skills for Chinese content production, visual design, illustration, reading workflows, and narrated video creation.
 
 The repository is organized as a skill library. Each folder under `skills/` is an independent skill with its own `SKILL.md`, agent metadata, references, examples, scripts, or assets.
