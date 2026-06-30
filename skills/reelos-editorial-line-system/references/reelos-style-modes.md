@@ -4,12 +4,15 @@ Use this reference when the user asks for ReelOS taste, palette modes, aesthetic
 
 Choose one dominant mode. A mode is a skin over the same editorial line-art engine; it should not replace the core monochrome character style.
 
-Default mode: **ReelOS Lab Orbit**. It is the representative ReelOS style and should be the first choice when the user does not specify a mode.
+Default mode: **Base Editorial Line**. It preserves the original editorial-line-system visual DNA and should be the first choice when the user does not specify a mode.
+
+Second mode: **ReelOS Lab Orbit**. It is the representative ReelOS-branded style, best used when the user wants personal AI OS, builder lab, orbit, signal, or system telemetry language.
 
 ## Mode Selection
 
 | Mode | Best for | Visual logic |
 | --- | --- | --- |
+| Base Editorial Line | default article visuals, abstract ideas, brand boards, minimalist editorial illustration | black-and-white geometric characters, large whitespace, sparse pastel accents |
 | ReelOS Lab Orbit | personal AI OS, builder labs, AI-native essays, one-person company systems | warm paper plus dark lab, orbital signal, personal system telemetry |
 | Ink Editorial | cultural essays, reflective analysis, humanistic tech, publishing | paper, ink, cinnabar, literary breath |
 | Modern Tech Editorial | product launches, AI apps, SaaS, model releases, startup analysis | crisp white/graphite, blue signal, product-system clarity |
@@ -31,6 +34,37 @@ Default mode: **ReelOS Lab Orbit**. It is the representative ReelOS style and sh
 - Use accents as semantic signals, not surface decoration.
 - Preserve the core line-art characters as mostly black-and-white.
 - Use real causal structure for analysis images: conflict, bottleneck, consequence.
+
+## Base Editorial Line
+
+Use by default when the user asks for a ReelOS Editorial Line image but does not specify a mode. This mode preserves the original editorial-line-system direction: black-and-white line-art characters, geometric bodies, large negative space, magazine-like hierarchy, and only a few soft pastel blocks.
+
+Typography:
+- Display: clean editorial sans or restrained CJK title type; keep headings bold, sparse, and readable.
+- Body/UI: simple sans for short labels; avoid dense body text inside image generation.
+- Meta: optional small sans or mono labels only when they clarify structure.
+- Rhythm: strong title, clear panel labels, generous whitespace. Chinese tracking stays `0`.
+
+Palette:
+- Ink: `#0A0A0A`, `#111111`
+- Paper/cream: `#FFFDF8`, `#F7F3EA`, `#F2EFE7`
+- Soft yellow: `#F4D35E`
+- Muted purple: `#B8A7D9`
+- Warm orange: `#F2A65A`
+- Muted pink: `#E9A7B4`
+- Soft gray line: `#D9D6CE`
+
+Image direction:
+- Minimal black-and-white line-art characters with simple faces and clean geometric proportions.
+- Everyday urban scenes translate abstract ideas into visible behavior: reading, commuting, coding, shopping, presenting, deploying, reviewing, walking, resting.
+- Editorial composition: asymmetrical grid, large negative space, bold headline, section blocks, and a few strong labels.
+- Pastel accents are functional: background blocks, UI panels, product surfaces, labels, dividers, or signal states. Characters remain mostly monochrome.
+- Best structures: editorial poster, multi-panel article explainer, brand visual system board, magazine spread, packaging/product card, website hero, mobile UI mockup.
+
+Guardrails:
+- Do not add ReelOS Lab Orbit signals by default: no dark lab field, orbit core, HUD, scanline, personal OS telemetry, or orange-blue system rings unless requested.
+- Avoid realistic rendering, 3D, glossy lighting, heavy gradients, anime, childish mascot style, excessive color, and cluttered dashboards.
+- Do not make a plain text card. The scene should carry the idea.
 
 ## Ink Editorial
 

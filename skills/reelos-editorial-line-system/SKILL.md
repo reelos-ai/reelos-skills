@@ -2,7 +2,7 @@
 name: reelos-editorial-line-system
 description: Convert text, images, brands, product ideas, UI concepts, campaigns, or analysis articles into a ReelOS-flavored modern editorial black-and-white line-art visual system whose core claim is "one image should make the matter clear." Use this skill whenever the user asks for ReelOS editorial illustrations, minimalist line-art PNG posters, article lead images, explainers, brand visual boards, magazine spreads, website hero visuals, mobile UI mockups, packaging visuals, or "make this into a picture" in a monochrome line-art style with sparse pastel accents. Default to image generation for visual requests and prioritize clarity of argument over decoration.
 user_invocable: true
-version: "1.5.1"
+version: "1.6.0"
 ---
 
 # ReelOS Editorial Line System
@@ -11,7 +11,7 @@ Turn the user's input into a modern editorial visual system: black-and-white lin
 
 The core thesis of this skill is: **one image should make the matter clear**. The image is not decoration for an article. It is a compressed explanation of the article's argument, conflict, mechanism, and conclusion.
 
-Default visual identity: **ReelOS Lab Orbit**. Unless the user names another mode or the task clearly calls for a specialized style, use ReelOS Lab Orbit as the first-choice representative ReelOS style.
+Default visual identity: **Base Editorial Line**. Use the original editorial line-art style unless the user names another mode or the task clearly calls for a specialized style. `ReelOS Lab Orbit` is the second mode and the representative ReelOS-branded style.
 
 ## Operating Rule
 
@@ -40,7 +40,7 @@ Read `references/visual-language.md` when building any output. If the user asks 
 ## Route To The Right Reference
 
 - For output selection and input classification details, read `references/output-routing.md`.
-- For ReelOS palette modes and typography-first aesthetic choices, read `references/reelos-style-modes.md`. If no mode is specified, choose `ReelOS Lab Orbit`.
+- For ReelOS palette modes and typography-first aesthetic choices, read `references/reelos-style-modes.md`. If no mode is specified, choose `Base Editorial Line`; use `ReelOS Lab Orbit` when the user asks for ReelOS-branded, personal AI OS, builder lab, or orbit/system telemetry language.
 - For PNG prompt structures, article lead images, brand boards, campaign boards, and image-to-illustration prompts, read `references/prompt-recipes.md`.
 - For exact editable layouts, long Chinese text, or browser-rendered output, read `references/html-output.md`.
 - Before finalizing, check against `references/quality-check.md`.

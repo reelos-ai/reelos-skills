@@ -4,7 +4,7 @@ This Codex skill converts text, images, brands, products, UI concepts, campaigns
 
 Its core claim: **one image should make the matter clear**. For articles and analysis, the image should compress the argument, conflict, mechanism, and conclusion into a visual explanation, not merely decorate the text.
 
-Default representative style: **ReelOS Lab Orbit**. Use it when no other mode is specified; treat the other modes as task-specific alternatives.
+Default representative style: **Base Editorial Line**. Use it when no other mode is specified. `ReelOS Lab Orbit` is the second mode and the representative ReelOS-branded style for personal AI OS, builder lab, orbit, signal, or system telemetry language.
 
 For sharp text, use the text-safe workflow: let image generation create the illustration layer, then typeset exact Chinese titles, labels, and captions with HTML/SVG or another layout layer. Pure image generation is best for sparse large text, not dense diagrams.
 
