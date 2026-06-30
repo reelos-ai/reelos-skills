@@ -17,6 +17,13 @@ Output: [direction / typography only / implement / review / image prompt / refer
 Verification: [optional browser screenshot / responsive / contrast / console]
 ```
 
+For stronger results, replace vague adjective clusters with a concrete reference situation:
+
+```text
+Instead of: premium, modern, trustworthy
+Try: like a founder memo from a frontier AI lab, translated into a public product landing page
+```
+
 ## Quick Starters
 
 Typography only:
@@ -63,6 +70,17 @@ Reference extraction:
 Use $reelos-design-taste to study this URL/HTML.
 Extract reusable typography, palette, layout, material, and motion rules.
 Do not copy the brand; convert it into a reusable pattern.
+```
+
+Portable taste spec:
+
+```text
+Use $reelos-design-taste to create a portable taste spec.
+Project: mixed Chinese/English AI research product
+Audience: technical founders and investors
+Reference world: research-lab briefing meets premium product interface
+Priority: typography first, then semantic tokens and component states
+Output: portable taste spec with do/do-not constraints
 ```
 
 Professional implementation brief:
@@ -129,3 +147,7 @@ Implementation:
 
 Reference extraction:
 - Provide source URL/HTML; ask for reusable rules; explicitly say not to copy brand, assets, text, or proprietary structure.
+
+Portable taste spec:
+- Ask for a taste thesis, design rationale, semantic tokens, component states, and do/do-not constraints.
+- Use this when the design direction will be handed to another coding agent or reused across pages.

@@ -9,6 +9,8 @@ Use this reference to critique and refine design taste.
 - Taste ages better than fashion. Prefer durable structure over trend effects.
 - Taste is the sum of invisible details: baseline, line-height, edge contrast, opacity, easing, and spacing.
 - Restraint is confidence: when you can add more but choose not to.
+- Specificity beats adjective clusters: a precise design world carries more taste than "modern, clean, premium."
+- Negative constraints define character: what the system refuses to use is as important as what it permits.
 
 ## Taste Scorecard
 
@@ -26,11 +28,12 @@ Score each axis from 1-5:
 10. **Durability**: Will it still feel good after the trend passes?
 11. **Execution Readiness**: Are tokens, components, states, and responsive behavior concrete enough to implement?
 12. **Reference Integrity**: If a reference was used, has it been transformed into a reusable pattern rather than copied?
+13. **Spec Portability**: Can another agent implement this from prose rationale, semantic tokens, states, and do-not-use rules without guessing?
 
 Interpretation:
-- 54-60: refined, durable, and implementation-ready.
-- 44-53: strong direction with detail issues.
-- 32-43: concept exists, taste needs tightening.
+- 59-65: refined, durable, and implementation-ready.
+- 48-58: strong direction with detail issues.
+- 35-47: concept exists, taste needs tightening.
 - Below 32: likely generic, overloaded, incoherent, or not shippable.
 
 ## Severity Guide
@@ -63,6 +66,8 @@ Interpretation:
 - **Decorative cards everywhere**: page sections treated as floating cards, flattening the hierarchy.
 - **Font theater**: display fonts doing body-text work, brush fonts used as UI, or mono type making prose hard to read.
 - **Color-first design**: choosing palettes before defining type voice and hierarchy.
+- **Adjective soup**: relying on "clean, premium, modern" without a specific product world, reference situation, or cultural logic.
+- **Token theater**: listing colors, type sizes, and radii without rationale, component states, or negative constraints.
 - **False luxury**: beige, serif, large whitespace, and gold accents without precise hierarchy or content specificity.
 - **Fake tech**: terminal/scanline/neon effects with no data logic.
 - **Overlocalized cliché**: dragons, lanterns, cherry blossoms, mandalas, or tribal patterns used as stickers.
@@ -142,6 +147,7 @@ Use this for serious UI, landing page, brand system, or reference-extraction wor
 - Are type roles mapped before choosing colors?
 - Do cards, borders, shadows, gradients, and glows have semantic roles?
 - Are hover, focus, active, disabled, and mobile states considered when implementing?
+- If a portable spec is needed, does it include prose rationale plus semantic tokens rather than token values alone?
 - Does the design use real subject matter or inspectable product/place/object imagery when needed?
 - If a reference inspired the design, can the result survive without copying its exact layout or brand assets?
 - Is there a clear "do not use" list to prevent taste drift?

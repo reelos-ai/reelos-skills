@@ -15,13 +15,28 @@ Use this when turning taste into tokens, components, or production UI.
 
 ## Taste-To-Token Workflow
 
-1. Name 3-5 semantic color roles before choosing colors.
-2. Define typography roles by usage, not just sizes: display, body, UI, meta, accent.
-3. Pick one spacing base and enforce it.
-4. Decide shape language: sharp, micro-radius, soft, circular, or irregular.
-5. Define texture/material rules.
-6. Define motion tempo and easing.
-7. Build component states: default, hover, active, disabled, focus, error.
+1. Write one specific taste thesis before choosing tokens. A concrete world beats a list of generic adjectives.
+2. Name 3-5 semantic color roles before choosing colors.
+3. Define typography roles by usage, not just sizes: display, body, UI, meta, accent.
+4. Pick one spacing base and enforce it.
+5. Decide shape language: sharp, micro-radius, soft, circular, or irregular.
+6. Define texture/material rules.
+7. Define motion tempo and easing.
+8. Build component states: default, hover, active, disabled, focus, error.
+9. Add negative constraints. State what the system refuses to use so taste does not drift.
+
+## Portable Spec Discipline
+
+Use this when a direction needs to survive implementation by another agent or future session.
+
+- Pair every token group with prose. Tokens say what values to use; prose says why and when to use them.
+- Keep tokens semantic, not decorative: `accent-primary`, `surface-raised`, `text-muted`, `motion-reveal`, not `pretty-blue` or `big-card`.
+- Define typography as roles first: display, heading, body, UI, meta/data, CJK fallback, Latin fallback.
+- Define component variants and states explicitly: primary button default/hover/focus/disabled, card default/hover/selected, input default/focus/error.
+- Allow custom sections for the domain: motion, iconography, imagery, data visualization, editorial rhythm, cultural material, or performance proof.
+- Treat unknown sections as useful context when they clarify taste; do not over-standardize every project.
+- Include a do-not-use list. Negative constraints are part of the design system, not afterthoughts.
+- When reviewing a spec, check token references, contrast, duplicate roles, missing states, and whether prose and tokens contradict each other.
 
 ## Example: GuanShan-Inspired New Chinese System
 

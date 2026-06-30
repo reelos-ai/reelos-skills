@@ -70,6 +70,78 @@ Rules
 - What to avoid:
 ```
 
+## Portable Taste Spec
+
+Use this when the design direction must be reused by another agent, teammate, codebase, or future session. The goal is not to create a giant design system; it is to make taste executable without flattening it into tokens only.
+
+```text
+Taste thesis
+One specific sentence naming the world this design belongs to. Prefer a concrete reference situation over adjective clusters.
+
+Example pattern
+- Better: "A graduate-level AI research lab briefing translated into a premium product interface."
+- Weaker: "modern, clean, premium, trustworthy."
+
+Design rationale
+- Typography:
+- Palette:
+- Layout:
+- Material / depth:
+- Motion:
+- Why these choices fit the product and audience:
+
+Semantic tokens
+- Color roles:
+  - canvas:
+  - surface:
+  - text-primary:
+  - text-muted:
+  - accent-primary:
+  - accent-secondary:
+  - border:
+  - state-success / warning / error:
+- Type roles:
+  - display:
+  - heading:
+  - body:
+  - UI:
+  - meta / data:
+  - CJK / Latin pairing:
+- Spacing:
+  - base unit:
+  - component padding:
+  - section rhythm:
+- Shape:
+  - radius scale:
+  - icon stroke:
+- Depth / material:
+  - surface stack:
+  - border / shadow / blur rules:
+- Motion:
+  - reveal:
+  - hover:
+  - active / focus:
+  - background:
+
+Component states
+- Primary button: default / hover / active / focus / disabled.
+- Secondary button: default / hover / active / focus / disabled.
+- Card or panel: default / hover / selected.
+- Input: default / focus / error / disabled.
+- Navigation item: default / active / hover.
+
+Do / Do not
+- Do:
+- Do not:
+
+Verification notes
+- Contrast:
+- Responsive fit:
+- Typography rendering:
+- Motion performance:
+- Browser or screenshot checks:
+```
+
 ## UI / Brand System Implementation
 
 ```text
