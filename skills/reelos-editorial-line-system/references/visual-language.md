@@ -4,6 +4,7 @@ Use this reference for every Editorial Line System output.
 
 ## Style DNA
 
+- This is not only a prompt template. First extract the subject's everyday-life behavior, brand temperament, and editorial message; then rebuild those into the fixed visual system.
 - Minimal black-and-white line art characters.
 - Clean flat geometric proportions, simple faces, stylized bodies.
 - Everyday urban lifestyle scenes: commuting, phone use, reading, shopping, selfies, walking, resting, listening, coding, deploying, presenting, reviewing, multitasking.
@@ -27,11 +28,13 @@ For more specific ReelOS palettes, read `reelos-style-modes.md` and choose one d
 
 ## Composition Principles
 
+- Think like an art director before writing a prompt: identify the visual metaphor, the ordinary human action, the product/application context, and the character world.
 - Let typography organize the page, but do not rely on tiny text for meaning.
 - Prefer one strong visual metaphor over many weak icons.
 - Use multi-panel composition when the input includes multiple clauses, scenes, stakeholders, or causal steps.
 - For abstract ideas, turn each clause into an everyday action that embodies the concept.
 - Characters should feel like editorial actors, not mascots.
+- For brand/product/name-only inputs, infer the brand soul: what daily scene proves it exists, who appears, what objects identify it, and which accent colors feel native.
 
 ## Negative Constraints
 

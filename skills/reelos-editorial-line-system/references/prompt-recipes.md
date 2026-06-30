@@ -18,6 +18,8 @@ Leave clear blank title and label areas for later typesetting. Use simple placeh
 
 ## Master Image Prompt
 
+Use this for the default **Base Editorial Line** mode unless another mode is explicitly selected. Before filling the prompt, decide the subject's everyday behavior, brand temperament, editorial message, character world, and accent roles.
+
 ```text
 A modern editorial illustration system for [SUBJECT], featuring minimalist black-and-white line art characters across [APPLICATIONS]. The scene translates [CORE_IDEA] into everyday urban life moments: [SCENES]. Characters are clean, flat, geometric, with simple facial features, stylized proportions, and mostly monochrome bodies. The design emphasizes bold typography, large negative space, asymmetrical editorial hierarchy, and strong contrast blocks. Use soft pastel accents selectively for backgrounds, product surfaces, packaging, UI panels, and section dividers: [ACCENT_COLORS]. Include [SPECIFIC_ELEMENTS]. Straight-on multi-panel layout view, high-resolution vector-like lines, smooth edges, flat design, no realistic lighting.
 
@@ -93,6 +95,8 @@ Best structure:
 ```
 
 ## Brand System Board
+
+Use this after completing the Brand Soul Builder in `output-routing.md`.
 
 ```text
 Create a horizontal PNG brand visual system board for [BRAND/PRODUCT]. Interpret the brand as [SOUL_INTERPRETATION]. Show minimalist black-and-white line art characters in everyday scenes: [SCENES]. Include application panels for [APPLICATIONS]. Use bold editorial typography, large negative space, asymmetrical layout, and selective pastel accents: [ACCENT_COLORS]. Characters are mostly monochrome, clean flat geometric, simple faces, stylized bodies. Include product or brand proof objects: [OBJECTS].

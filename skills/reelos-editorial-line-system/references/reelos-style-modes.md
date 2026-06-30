@@ -37,7 +37,13 @@ Second mode: **ReelOS Lab Orbit**. It is the representative ReelOS-branded style
 
 ## Base Editorial Line
 
-Use by default when the user asks for a ReelOS Editorial Line image but does not specify a mode. This mode preserves the original editorial-line-system direction: black-and-white line-art characters, geometric bodies, large negative space, magazine-like hierarchy, and only a few soft pastel blocks.
+Use by default when the user asks for a ReelOS Editorial Line image but does not specify a mode. This mode preserves the original `editorial-line-system` direction: black-and-white line-art characters, geometric bodies, large negative space, magazine-like hierarchy, and only a few soft pastel blocks.
+
+Core soul:
+- Treat the input as raw material, not as text to paste. Extract everyday-life behavior, brand temperament, and editorial message before designing the image.
+- Translate abstract claims into ordinary urban actions. A person commuting, scrolling, listening, reading, shopping, waiting, working, or multitasking should embody the concept.
+- Build a visual system, not a standalone text card: character world, product/application context, layout rhythm, and accent roles should all reinforce the subject.
+- For brand-only or product-only inputs, infer the daily scene the brand owns, the type of person who appears, the proof objects, the best applications, and 1-3 native accent colors.
 
 Typography:
 - Display: clean editorial sans or restrained CJK title type; keep headings bold, sparse, and readable.
@@ -56,9 +62,10 @@ Palette:
 
 Image direction:
 - Minimal black-and-white line-art characters with simple faces and clean geometric proportions.
-- Everyday urban scenes translate abstract ideas into visible behavior: reading, commuting, coding, shopping, presenting, deploying, reviewing, walking, resting.
+- Everyday urban scenes translate abstract ideas into visible behavior: commuting, phone use, reading, shopping, selfies, walking, resting, listening, coding, deploying, presenting, reviewing, working, multitasking.
 - Editorial composition: asymmetrical grid, large negative space, bold headline, section blocks, and a few strong labels.
-- Pastel accents are functional: background blocks, UI panels, product surfaces, labels, dividers, or signal states. Characters remain mostly monochrome.
+- Pastel accents are functional: background blocks, packaging, UI surfaces, product labels, section blocks, dividers, or signal states. Characters remain mostly monochrome.
+- If text appears inside image generation, keep it large, sparse, and high-level. For exact Chinese, dense labels, or long captions, use the text-safe HTML/SVG overlay workflow.
 - Best structures: editorial poster, multi-panel article explainer, brand visual system board, magazine spread, packaging/product card, website hero, mobile UI mockup.
 
 Guardrails:
