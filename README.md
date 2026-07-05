@@ -29,6 +29,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 | `reelos-jinghuan-illustrations` | You want ReelOS-style Chinese article illustrations or brand article visuals. | Illustration prompts, article figures, cover/banner guidance |
 | `reelos-voice-cinema` | You want an independent voice-cinema style Remotion video workflow. | Narrated video, subtitle effects, motion material guidance |
 | `reelos-creative-15s` | You want a ReelOS-branded 15-second creative video script from one image or creative brief. | Brand-forward shot script, voiceover beats, BGM and sound design guidance |
+| `tech-research-report` | You want to turn a long tech or industry analysis into a polished self-contained research report page. | HTML research report, data-viz sections, comparison panels, export/print controls |
 | `pdf-book-accelerator` | You want to skim, summarize, study, or extract knowledge from a PDF book. | Chapter notes, summaries, action lists, review cards |
 
 ## Recommended Install Order
@@ -91,6 +92,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-editorial-line-system
 ```
 
+Install the tech research report generator:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/tech-research-report
+```
+
 Install multiple skills at once:
 
 ```bash
@@ -103,7 +112,8 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
     skills/reelos-design-taste \
     skills/reelos-editorial-line-system \
     skills/reelos-jinghuan-illustrations \
-    skills/reelos-creative-15s
+    skills/reelos-creative-15s \
+    skills/tech-research-report
 ```
 
 Install from a specific branch or tag:
