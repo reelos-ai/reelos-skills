@@ -27,6 +27,18 @@
 - 不用 CSS animation；Remotion 里用 frame、`interpolate()`、`spring()`、`Sequence`。
 - 可以学习 transitions.dev 和 GSAP 的动效词典、时间线、easing 和 stagger，但不要直接搬 CSS transition 或 GSAP runtime 进 Remotion 合成。
 
+## 自动动效导演入口
+
+本文件负责定义运动骨架和动效语法；当任务需要自动判断“哪一种效果最好”时，同时读取 `auto-motion-director.md`。执行顺序固定为：
+
+1. 先用 Motion Brief 确定全片运动骨架。
+2. 再按每个 TTS beat 的语义生成候选效果。
+3. 使用自动动效导演的 100 分评分选择主动作。
+4. 将选中动作和候选分数写入 Beat Motion Map。
+5. 关键帧审片后按返修规则替换重复、拥挤或语义不匹配的效果。
+
+不要先挑“好看的动画”再寻找适合它的口播。候选效果必须从当前 beat 的关系类型反推。
+
 ## Motion Brief 模板
 
 每次做科普或复杂结构视频，内部先写这张卡：

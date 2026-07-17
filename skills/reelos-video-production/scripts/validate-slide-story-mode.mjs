@@ -17,6 +17,7 @@ const requiredFiles = [
   'agents/openai.yaml',
   'references/slide-story-mode.md',
   'references/slide-story-templates.md',
+  'references/auto-motion-director.md',
 ];
 
 for (const path of requiredFiles) {
@@ -27,6 +28,7 @@ if (failures.length === 0) {
   const skill = read('SKILL.md');
   const mode = read('references/slide-story-mode.md');
   const templates = read('references/slide-story-templates.md');
+  const autoMotion = read('references/auto-motion-director.md');
   const openai = read('agents/openai.yaml');
 
   assert(skill.split('\n').length <= 500, 'SKILL.md must stay under 500 lines');
@@ -59,6 +61,10 @@ if (failures.length === 0) {
   assert(templates.includes('## 反模式'), 'missing anti-patterns');
   assert(openai.includes('$reelos-video-production'), 'default_prompt must invoke the skill explicitly');
   assert(openai.includes('Slide Story'), 'openai.yaml must expose Slide Story capability');
+  assert(skill.includes('自动择效'), 'SKILL.md must enable automatic motion selection');
+  assert(autoMotion.includes('总分不低于 75'), 'auto motion director must define the acceptance threshold');
+  assert(autoMotion.includes('语义准确'), 'auto motion director must define semantic scoring');
+  assert(autoMotion.includes('MotionDecisionPlan'), 'auto motion director must define the decision contract');
 
   const referencePaths = [...skill.matchAll(/`(references\/[^`]+\.md)`/g)].map((match) => match[1]);
   for (const path of new Set(referencePaths)) {
