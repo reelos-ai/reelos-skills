@@ -1,6 +1,6 @@
 ---
 name: reelos-video-production
-description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos, especially when the user asks for 口播视频, TTS, 音画同步, 视觉设计师, 战略作战室风, 黑板推演风, ReelOS SketchTalk, 黑红白强观点哲思风, or a stable repeatable video production workflow.
+description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos or Slide Story presentations, especially when the user asks for 口播视频, TTS, 音画同步, 视觉设计师, 战略作战室风, 黑板推演风, ReelOS SketchTalk, Slide Story, 演示型口播视频, 互动演示, 路演式视频, 黑红白强观点哲思风, or a stable repeatable video production workflow.
 ---
 
 # ReelOS 口播视频生产
@@ -10,6 +10,30 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 把中文文章、链接、粘贴文本或观点稿做成稳定可复用的 Remotion 口播视频。核心原则是：先把内容审成适合真人讲述的口播稿，再生成真实 TTS 音频，用真实音频时长反写 timing，然后由视觉设计师绑定设计上下文、色板和版式，再由动效导演定义全片运动骨架，最后让 Remotion 画面跟随 timing 文件。
 
 ## 模式路由
+
+### Slide Story 演示叙事模式
+
+当用户出现以下任一表达时，读取 `references/slide-story-mode.md`：
+
+- `Slide Story`、`slide 模式`、`slides 模式`
+- `演示型口播视频`、`幻灯片讲解模式`、`路演式视频`
+- `生成互动演示`、`响应式幻灯片`
+- `同时生成演示稿和视频`
+- 要求使用 Cover、Split、Bento、Steps、Comparison、Timeline 等演示页语法讲述内容
+
+先判断输出目标：
+
+- `slides-web`：输出可交互的响应式 React 演示稿，适合现场演讲、屏幕分享和链接传播。
+- `slides-video`：输出 Remotion 口播视频，使用 Slide Story 视觉语法，但动画必须由真实 TTS timing 和 Remotion 帧驱动。
+- `slides-dual`：先生成共享内容规划，再同时输出 Web 演示和 MP4 视频。
+
+硬性边界：
+
+- Web Deck 可以使用点击 Build、Presenter、Annotation 和响应式重排。
+- Remotion 不直接引入 Framer Motion、浏览器点击状态、`localStorage`、`BroadcastChannel` 或 CSS animation。
+- 视频中的 `Build` 必须转译为 TTS cue，`Reveal` 必须转译为 `interpolate` / `spring`。
+- 一页只讲一个判断；相邻两页不得重复同一种构图。
+- 真实网站、品牌或产品必须使用可核验的文案、颜色和界面，不得把模板示例数据当成真实数据。
 
 ### SketchTalk 强观点口播视频模式
 
@@ -63,6 +87,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - `references/style-presets.md`：用户要求选风格、换风格、去 AI 味、优化视觉时读取。
 - `references/visual-design-system.md`：每次开始 Remotion 合成前读取；包含视觉设计师职责、真实上下文扫描、视觉设计卡、受控配色、字体参考、外部视觉参考提炼、主题节奏和动效设计。
 - `references/motion-director.md`：科普、系统模型、因果链路、长视频、SketchTalk 模板或用户要求“增强动效/图表动效”时读取；包含 motion brief、Beat Motion Map、transitions.dev/GSAP 转译规则、图表动效语法和动效验收。
+- `references/slide-story-mode.md`：用户要求 Slide Story、互动演示、演示型口播视频、路演式视频或演示稿与视频双目标输出时读取。
 - `references/ai-image-layer-prompts.md`：儒释道、哲学、心理学、抽象方法论等主题需要 AI 图片模型生成背景层、金描线稿、主题插图时读取。
 - `references/material-sourcing.md`：需要主题素材增强、背景视频、真实纹理或外部素材叠加时读取；包含 Pexels、Pixabay、Coverr 检索策略和启用判断。
 - `references/tts-remotion-pattern.md`：新增 TTS 脚本、timing 文件或 Remotion 合成时读取。
