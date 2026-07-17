@@ -1,6 +1,6 @@
 ---
 name: reelos-video-production
-description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos or Slide Story presentations, especially when the user asks for 口播视频, TTS, 音画同步, 视觉设计师, 战略作战室风, 黑板推演风, ReelOS SketchTalk, Slide Story, 演示型口播视频, 互动演示, 路演式视频, 黑红白强观点哲思风, or a stable repeatable video production workflow.
+description: Use when turning Chinese articles, pasted text, links, or long-form viewpoints into ReelOS-style narrated Remotion videos or Slide Story decks, especially for 口播视频, TTS, 音画同步, 视觉设计师, 动效导演, ReelOS SketchTalk, Slide Story, slides/deck mode, 演示型口播视频, 路演式视频, 互动演示, 演示稿与视频双交付, or a stable repeatable video production workflow.
 ---
 
 # ReelOS 口播视频生产
@@ -10,6 +10,25 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 把中文文章、链接、粘贴文本或观点稿做成稳定可复用的 Remotion 口播视频。核心原则是：先把内容审成适合真人讲述的口播稿，再生成真实 TTS 音频，用真实音频时长反写 timing，然后由视觉设计师绑定设计上下文、色板和版式，再由动效导演定义全片运动骨架，最后让 Remotion 画面跟随 timing 文件。
 
 ## 模式路由
+
+### 入口决策顺序
+
+每次只选择一个主模式。按以下顺序判定，不要只凭单个关键词猜测：
+
+1. **显式模式**：用户明确说 `Slide Story`、`SketchTalk` 或某个既有模板名时，优先采用该模式。
+2. **交付物**：先确认用户要 `Web 演示`、`MP4 视频`，还是两者都要；交付物不明确但用户说“制作视频”时，默认 MP4。
+3. **内容形态**：章节式商业讲解、产品宣传、路演、教学拆解优先 Slide Story；强观点、哲思、个人认知、黑红白大字优先 SketchTalk；其余进入标准口播视频。
+4. **冲突消解**：显式模式高于内容风格；交付物高于视觉关键词；主题只决定视觉系统，不自动改变主模式。
+
+| 用户意图 | 主模式 | 默认路由 |
+| --- | --- | --- |
+| “用 slide/Slide Story/演示页做” | Slide Story | `slides-video`；明确要演示链接时改为 `slides-web` |
+| “同时给我演示稿和视频” | Slide Story | `slides-dual` |
+| “空见心力/黑红白/强观点大字/beat 字幕” | SketchTalk | MP4 |
+| “制作口播视频”，没有模式词 | 标准口播视频 | MP4 |
+| 只说“整理成 PPT/大纲”，未要求可播放 Deck 或视频 | 不进入 Slide Story | 先完成内容整理 |
+
+如果用户同时要求 Slide Story 和 SketchTalk，以显式交付物为准：需要演示页结构时用 Slide Story，并把黑红白作为主题 token；需要竖屏强观点口播时用 SketchTalk，不套演示页模板。
 
 ### Slide Story 演示叙事模式
 
@@ -21,11 +40,15 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - `同时生成演示稿和视频`
 - 要求使用 Cover、Split、Bento、Steps、Comparison、Timeline 等演示页语法讲述内容
 
+不要仅因输入里出现 `PPT`、`页面`、`卡片`、`截图` 或“参考某个演示”就自动进入；必须同时存在演示式叙事、可播放 Deck、路演/讲解视频或明确的 Slide Story 交付意图。
+
 先判断输出目标：
 
 - `slides-web`：输出可交互的响应式 React 演示稿，适合现场演讲、屏幕分享和链接传播。
 - `slides-video`：输出 Remotion 口播视频，使用 Slide Story 视觉语法，但动画必须由真实 TTS timing 和 Remotion 帧驱动。
 - `slides-dual`：先生成共享内容规划，再同时输出 Web 演示和 MP4 视频。
+
+再选择模板。读取 `references/slide-story-templates.md`，按时长、受众和叙事任务选择稳定模板 ID；不要从空白布局列表临时拼装整条片。
 
 硬性边界：
 
@@ -88,6 +111,7 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - `references/visual-design-system.md`：每次开始 Remotion 合成前读取；包含视觉设计师职责、真实上下文扫描、视觉设计卡、受控配色、字体参考、外部视觉参考提炼、主题节奏和动效设计。
 - `references/motion-director.md`：科普、系统模型、因果链路、长视频、SketchTalk 模板或用户要求“增强动效/图表动效”时读取；包含 motion brief、Beat Motion Map、transitions.dev/GSAP 转译规则、图表动效语法和动效验收。
 - `references/slide-story-mode.md`：用户要求 Slide Story、互动演示、演示型口播视频、路演式视频或演示稿与视频双目标输出时读取。
+- `references/slide-story-templates.md`：进入 Slide Story 后必须读取；包含模板 ID、选择规则、页面槽位、共享 plan 契约和触发示例。
 - `references/ai-image-layer-prompts.md`：儒释道、哲学、心理学、抽象方法论等主题需要 AI 图片模型生成背景层、金描线稿、主题插图时读取。
 - `references/material-sourcing.md`：需要主题素材增强、背景视频、真实纹理或外部素材叠加时读取；包含 Pexels、Pixabay、Coverr 检索策略和启用判断。
 - `references/tts-remotion-pattern.md`：新增 TTS 脚本、timing 文件或 Remotion 合成时读取。
