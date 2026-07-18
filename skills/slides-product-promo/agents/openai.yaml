@@ -1,4 +1,4 @@
 interface:
   display_name: "Slides 产品宣传片"
-  short_description: "研究产品、生成口播与 TTS，并制作音画同步的 Slides 宣传片"
-  default_prompt: "Use $slides-product-promo to research this product and create a TTS-synced Slides promotional video."
+  short_description: "用特效导演流程制作并验收音画同步的产品宣传片"
+  default_prompt: "Use $slides-product-promo in Cinematic FX Mode to research this product, generate TTS first, direct the motion effects, render the video, and run scored acceptance."

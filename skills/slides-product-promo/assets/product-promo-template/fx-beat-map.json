@@ -1,0 +1,48 @@
+{
+  "mode": "cinematic",
+  "fps": 30,
+  "hero_moment_budget": 4,
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.8,
+      "phrase": "Exact spoken phrase",
+      "semantic_goal": "What the viewer should understand",
+      "hero_effect": {
+        "type": "radar-sweep",
+        "trigger": "spoken keyword",
+        "start_frame": 12,
+        "impact_frame": 32,
+        "end_frame": 72,
+        "easing": "power3.out",
+        "layers": ["radar", "event-points"],
+        "parameters": {
+          "rotation": 150,
+          "point_stagger_frames": 4
+        }
+      },
+      "supporting_motion": {
+        "type": "title-lock",
+        "start_frame": 18,
+        "end_frame": 44
+      },
+      "atmosphere": {
+        "type": "breathing-glow",
+        "contrast": "low"
+      },
+      "transition": {
+        "type": "semantic-cut",
+        "duration_frames": 0
+      },
+      "asset_requirements": ["brand colors", "event point data"],
+      "sync": {
+        "anchor": "spoken keyword",
+        "tolerance": 0.2
+      },
+      "risks": ["keep headline stable"],
+      "fallback": "static radar with sequential point pulses"
+    }
+  ]
+}
