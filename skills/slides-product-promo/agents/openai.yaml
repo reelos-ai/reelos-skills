@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slides 产品宣传片"
+  short_description: "研究产品、生成口播与 TTS，并制作音画同步的 Slides 宣传片"
+  default_prompt: "Use $slides-product-promo to research this product and create a TTS-synced Slides promotional video."

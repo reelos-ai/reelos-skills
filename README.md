@@ -23,6 +23,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 | --- | --- | --- |
 | `koubo-shengao-yuan` | You want to turn written Chinese material into an energetic self-media narration script before TTS or video production. | Reviewed narration script, TTS segmentation guidance, video workflow checks |
 | `reelos-video-production` | You want a Chinese narrated Remotion video with TTS, timing sync, visual design, motion direction, render, and validation. | MP4 video, TTS assets, timing files, Remotion composition, review frames |
+| `slides-product-promo` | You want to research a real website and turn it into a TTS-synchronized Bolt Slides product promo with comfortable motion. | Research notes, voiceover, TTS, timeline, interactive slides, synchronized MP4 |
 | `reelos-sketchtalk` | You want a SketchTalk / vertical thought poster / strong viewpoint cover / black-red-white minimalist visual system. | 9:16 cover images, storyboard pages, metaphor illustration prompts |
 | `reelos-design-taste` | You want design taste review, typography direction, cultural visual systems, or reference extraction. | Design decisions, style systems, review notes, UI/visual guidance |
 | `reelos-editorial-line-system` | You want one image to make an article, argument, product idea, or AI/tech analysis clear in a ReelOS editorial line-art style. | Article lead images, explainer visuals, style-mode prompts, text-safe visual systems |
@@ -68,6 +69,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/reelos-sketchtalk
 ```
 
+Install the Bolt Slides product-promo workflow:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/slides-product-promo
+```
+
 Install the narration reviewer:
 
 ```bash
@@ -108,6 +117,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path \
     skills/koubo-shengao-yuan \
     skills/reelos-video-production \
+    skills/slides-product-promo \
     skills/reelos-sketchtalk \
     skills/reelos-design-taste \
     skills/reelos-editorial-line-system \
@@ -151,6 +161,10 @@ Use $koubo-shengao-yuan to rewrite this article into a natural Chinese narration
 
 ```text
 Use $reelos-video-production to turn this script into a narrated video.
+```
+
+```text
+Use $slides-product-promo to research https://reelos.ai, write the voiceover and TTS first, then create a synchronized product-promo video with comfortable motion.
 ```
 
 ```text
@@ -369,6 +383,7 @@ reelos-skills/
 │   ├── reelos-jinghuan-illustrations/
 │   ├── reelos-sketchtalk/
 │   ├── reelos-video-production/
+│   ├── slides-product-promo/
 │   └── reelos-voice-cinema/
 └── .gitignore
 ```
