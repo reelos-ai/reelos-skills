@@ -182,6 +182,14 @@ Use $reelos-editorial-line-system to turn this article into one image that makes
 
 使用 `reelos-video-production` 做完整口播视频。
 
+第一次使用建议先阅读独立指南：
+
+```text
+examples/reelos-video-production/README.md
+```
+
+指南包含以 `reelos.ai` 为例的可复制提示词、三种模式、自动动效导演、默认交付物和验证标准。
+
 推荐流程：
 
 1. 如果输入像文章或过于书面，先用 `koubo-shengao-yuan` 审稿。
