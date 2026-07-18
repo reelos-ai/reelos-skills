@@ -1,0 +1,49 @@
+{
+  "fps": 30,
+  "audio": "renders/voiceover.mp3",
+  "audio_duration": 15.0,
+  "shots": [
+    {
+      "id": "hook",
+      "start": 0.0,
+      "end": 2.5,
+      "phrase": "Hook phrase",
+      "slide": 1,
+      "visual": "User tension",
+      "motion": { "type": "slow-push", "amount": 0.03 },
+      "anchor": "phrase-start",
+      "tolerance": 0.25
+    },
+    {
+      "id": "reveal",
+      "start": 2.5,
+      "end": 5.0,
+      "phrase": "Product reveal",
+      "slide": 2,
+      "visual": "Logo and product name",
+      "motion": { "type": "focus-draw", "amount": 0.0 },
+      "anchor": "product-name",
+      "tolerance": 0.2
+    },
+    {
+      "id": "mechanism",
+      "start": 5.0,
+      "end": 11.5,
+      "phrase": "How it works",
+      "slide": 3,
+      "visual": "Real product workflow",
+      "motion": { "type": "pan", "amount": 0.02 }
+    },
+    {
+      "id": "cta",
+      "start": 11.5,
+      "end": 15.0,
+      "phrase": "Visit example.com",
+      "slide": 4,
+      "visual": "Domain typing and hold",
+      "motion": { "type": "domain-type", "amount": 0.0 },
+      "anchor": "spoken-domain",
+      "tolerance": 0.2
+    }
+  ]
+}
