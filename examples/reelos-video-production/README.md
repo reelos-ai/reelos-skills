@@ -27,6 +27,18 @@
 
 每次只选择一个主模式。主题和配色属于视觉层，不会自动改变模式。
 
+### 可选视觉系统：深空信号系统风
+
+当内容是 AI 系统、Agent、Skill、基础设施、研究信号或方法论产品时，可以在 Slide Story 主模式下追加“深空信号系统风”。它不是第四种主模式，而是一套视觉与动效契约。
+
+```text
+使用 $reelos-video-production，研究 https://reelos.ai，制作 60 秒 Slide Story 产品宣传 MP4。
+采用深空信号系统风，使用真实官网证据；
+观点层、结构层、证据层分明，按语义自动选择汇聚、拓扑、矩阵、路径、闭环和动排；
+相邻场景避免重复构图，全片只保留一个强度 5 的英雄时刻；
+完成低清预览、静音审查和 VFX 终审后再输出。
+```
+
 ## 常用提示词
 
 ### 1. 网站产品宣传片
@@ -100,9 +112,11 @@
 → 视觉设计卡
 → Motion Brief
 → 自动动效评分与去重复
+→ VFX 特效预算与英雄时刻
 → Beat Motion Map
 → Remotion 合成
-→ 关键帧返修
+→ 低清全片与四种观看模式
+→ 100 分终审与定向返修
 → MP4 渲染与技术验证
 ```
 
@@ -151,6 +165,8 @@ Skill 会先判断当前段落的语义，再选择画面动作：
 - 真实音频 timing；
 - Slide Story Plan 或分镜规划；
 - Motion Decision Plan；
+- VFX Enhancement Plan；
+- Final Acceptance Report；
 - Remotion composition 源码；
 - Studio 预览地址；
 - 类型检查、关键帧、解码、音视频流、黑帧和响度验证结果。
