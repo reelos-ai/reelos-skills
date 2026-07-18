@@ -100,6 +100,8 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - 视觉闭环：视觉设计不止选色，还要输出设计卡、关键帧、动效中间态和修正记录。
 - 动效导演：写代码前先定义全片主运动骨架、2-4 个运动章节、每章主运动对象、TTS 绑定点和 Beat Motion Map；动效必须解释内容关系，不做随机装饰。
 - 自动择效：复杂口播、科普、产品宣传、SketchTalk 和 `slides-video` 默认启用自动动效导演；每个 beat 先做语义分类，再生成候选、评分择优和去重复，不以“动得多”代替“讲得清”。
+- 特效师强化：产品宣传、发布视频、数据科普和用户要求“更酷”时，在自动择效后增加 VFX Supervisor 环节，定义英雄时刻、特效预算、强度曲线、镜头连续性和稳定降级。
+- 终审验收：交付前必须经过静帧、低清全片、四种观看模式、100 分评分、硬门槛和最多两轮返修；技术可播放不等于视觉合格。
 - 工程可复用：每条视频都沉淀为脚本、音频、timing、组件和验收记录，方便迭代下一条。
 
 ## 先读这些参考
@@ -112,6 +114,9 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - `references/visual-design-system.md`：每次开始 Remotion 合成前读取；包含视觉设计师职责、真实上下文扫描、视觉设计卡、受控配色、字体参考、外部视觉参考提炼、主题节奏和动效设计。
 - `references/motion-director.md`：科普、系统模型、因果链路、长视频、SketchTalk 模板或用户要求“增强动效/图表动效”时读取；包含 motion brief、Beat Motion Map、transitions.dev/GSAP 转译规则、图表动效语法和动效验收。
 - `references/auto-motion-director.md`：制作科普、产品宣传、SketchTalk、`slides-video`，或用户要求“自动选择最佳动效/多一些可视化”时必须读取；包含语义分类、候选效果、100 分评分、去重复、硬约束和自动返修门槛。
+- `references/vfx-supervisor.md`：产品宣传、数据科普、发布视频、`slides-video` 或用户要求“更酷/更有吸引力/增强特效”时必须读取；包含特效师角色、效果库、英雄时刻、强度曲线、效果预算和镜头连续性。
+- `references/final-acceptance.md`：完整视频交付前必须读取；包含四种观看模式、100 分终审评分、硬门槛、两轮返修和终版技术验收。
+- `references/deep-signal-system-mode.md`：用户要求“深空信号系统风”，或 AI 系统、Agent、Skill、基础设施、研究信号类 Slide Story 需要专业科技视觉时读取；包含三层信息架构、视觉契约、构图语法、自动选效、强度曲线和反模式。
 - `references/slide-story-mode.md`：用户要求 Slide Story、互动演示、演示型口播视频、路演式视频或演示稿与视频双目标输出时读取。
 - `references/slide-story-templates.md`：进入 Slide Story 后必须读取；包含模板 ID、选择规则、页面槽位、共享 plan 契约和触发示例。
 - `references/ai-image-layer-prompts.md`：儒释道、哲学、心理学、抽象方法论等主题需要 AI 图片模型生成背景层、金描线稿、主题插图时读取。
@@ -141,11 +146,13 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 7. 视觉设计：先扫描既有视觉上下文，再产出视觉设计卡，确定风格、色板、主题图层方向、字体层级和场景节奏；AI 主题图层默认作为背景替代，并先离线优化为 1920x1080 JPG/WebP；儒释道、哲学、心理学等抽象主题优先读取 `references/ai-image-layer-prompts.md`，真实场景/产品/新闻素材再读取 `references/material-sourcing.md`。
 8. 动效导演：读取 `references/motion-director.md`，产出 motion brief，定义全片主运动骨架、运动章节、每章主运动对象、镜头推进方式、图表动效和 TTS 绑定点。
 9. 自动择效：读取 `references/auto-motion-director.md`，为每个 beat 标注语义类型，生成 2-3 个候选效果并按 100 分制评分；只采用总分不低于 75 的候选，平分时选择更简单、渲染更稳定的方案。
-10. Beat Motion Map：把每个 TTS scene 拆成 beat cue，给每个 cue 绑定主字幕、选中的画面动作、候选评分、隐喻图状态和转场方式；SketchTalk、科普和长视频必须做这一步。
-11. 分镜设计：每段画面只承载当前口播核心信息，同时绑定视觉设计卡、motion brief 和 Beat Motion Map。
-12. Remotion 合成：用 `Sequence`、`Html5Audio`、`staticFile`、`interpolate`、`spring` 和本地 motion preset；不用 CSS animation/transition，不直接引入 GSAP runtime。
-13. 自动返修：导出场景边界及 15%/50%/85% 中间帧，检查语义覆盖、连续重复、信息拥挤、空白、首帧和 cue 偏差；按自动动效导演规则降级、替换或重排不合格镜头。
-14. 导出验证：跑 `tsc`、完整 render、用 `ffprobe` 验证音视频流，并检查首秒黑帧、全片解码和响度。
+10. 特效师强化：读取 `references/vfx-supervisor.md`，把选中动作整理成 `VFXEnhancementPlan`，定义每幕主特效、辅助特效、英雄时刻、强度、转场承接、性能等级和 fallback。
+11. Beat Motion Map：把每个 TTS scene 拆成 beat cue，给每个 cue 绑定主字幕、选中的画面动作、候选评分、特效状态和转场方式；SketchTalk、科普和长视频必须做这一步。
+12. 分镜设计：每段画面只承载当前口播核心信息，同时绑定视觉设计卡、motion brief、MotionDecisionPlan、VFXEnhancementPlan 和 Beat Motion Map。
+13. Remotion 合成：用 `Sequence`、`Html5Audio`、`staticFile`、`interpolate`、`spring` 和本地 motion preset；不用 CSS animation/transition，不直接引入 GSAP runtime。
+14. 特效预审：导出场景边界及 15%/50%/85% 中间帧和低清全片，检查钩子、语义覆盖、英雄时刻、连续重复、信息负荷、首帧和 cue 偏差。
+15. 终审返修：读取 `references/final-acceptance.md`，用四种观看模式和 100 分标准验收；低于 85 分或命中硬门槛时进行最多两轮定向返修，仍不稳定则降级。
+16. 导出验证：跑 `tsc`、完整 render、`ffprobe`、全片解码、黑帧和响度检查，生成 `FinalAcceptanceReport` 后交付。
 
 ## 默认决策
 
@@ -155,7 +162,10 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - 默认情绪：`neutral`。
 - 默认推荐风格：战略作战室风。
 - 默认开启自动动效导演：适用于 `slides-video`、SketchTalk、科普、产品机制和商业讲解；纯静态 Web Deck 或用户明确要求极简静态时关闭。
+- 默认开启特效师完整环节：适用于产品宣传、发布视频、数据可视化、`slides-video` 和“更酷/更有吸引力”任务；普通低动态口播使用简版。
+- 默认终审合格线：总分不低于 85，且不命中任何硬门槛。
 - 默认推荐色板：墨水经典或靛蓝瓷；AI/科技信号内容可选瑞士克莱因蓝。
+- AI 系统、基础设施、研究信号和方法论产品明确要求专业科技品牌片时，可选“深空信号系统风”；它是视觉系统，不改变 `slides-video` / `slides-web` / `slides-dual` 主路由。
 - 教学概念拆解可选：黑板推演风。
 - 强观点商业内容优先：战略作战室风。
 
@@ -184,6 +194,8 @@ description: Use when turning Chinese articles, pasted text, links, or long-form
 - motion brief 是否完成，主运动骨架和运动章节是什么。
 - Beat Motion Map 是否完成，字幕 cue、画面动作和隐喻图状态是否绑定到 TTS。
 - 自动择效是否完成，采用了哪些语义类型、候选评分和去重复策略；低于 75 分的候选是否已降级或替换。
+- 特效师是否完成 `VFXEnhancementPlan`，英雄时刻、强度曲线、效果预算、镜头连续性和 fallback 是什么。
 - Remotion 合成 ID。
 - 导出 MP4 路径。
-- 已跑哪些验证：`tsc`、关键帧、`ffprobe`、Studio 预览。
+- 终审评分与硬门槛结果，是否发生返修或降级。
+- 已跑哪些验证：`tsc`、关键帧、低清全片、`ffprobe`、全片解码、黑帧、响度和 Studio 预览。

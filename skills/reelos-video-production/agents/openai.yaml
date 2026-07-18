@@ -1,6 +1,6 @@
 interface:
   display_name: "ReelOS 口播视频生产"
-  short_description: "制作 TTS 同步并自动择效的 ReelOS 口播视频与 Slide Story"
-  default_prompt: "Use $reelos-video-production to 先判断标准口播、SketchTalk 或 Slide Story 主模式，按真实 TTS timing 为每个 beat 生成并评分候选动效，自动选择语义最匹配的效果，再完成渲染、关键帧返修与验收。"
+  short_description: "制作 TTS 同步、特效强化并通过终审的 ReelOS 视频"
+  default_prompt: "Use $reelos-video-production to 先判断标准口播、SketchTalk 或 Slide Story 主模式；AI 系统、基础设施和研究信号类品牌片可采用深空信号系统风。按真实 TTS timing 自动择效，再由特效师生成 VFXEnhancementPlan、控制英雄时刻与效果预算；完成低清全片预览和 100 分终审，总分不低于 85 且无硬门槛问题后再交付。"
 policy:
   allow_implicit_invocation: true

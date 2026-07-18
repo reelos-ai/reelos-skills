@@ -18,6 +18,9 @@ const requiredFiles = [
   'references/slide-story-mode.md',
   'references/slide-story-templates.md',
   'references/auto-motion-director.md',
+  'references/vfx-supervisor.md',
+  'references/final-acceptance.md',
+  'references/deep-signal-system-mode.md',
 ];
 
 for (const path of requiredFiles) {
@@ -29,6 +32,9 @@ if (failures.length === 0) {
   const mode = read('references/slide-story-mode.md');
   const templates = read('references/slide-story-templates.md');
   const autoMotion = read('references/auto-motion-director.md');
+  const vfx = read('references/vfx-supervisor.md');
+  const acceptance = read('references/final-acceptance.md');
+  const deepSignal = read('references/deep-signal-system-mode.md');
   const openai = read('agents/openai.yaml');
 
   assert(skill.split('\n').length <= 500, 'SKILL.md must stay under 500 lines');
@@ -65,6 +71,21 @@ if (failures.length === 0) {
   assert(autoMotion.includes('总分不低于 75'), 'auto motion director must define the acceptance threshold');
   assert(autoMotion.includes('语义准确'), 'auto motion director must define semantic scoring');
   assert(autoMotion.includes('MotionDecisionPlan'), 'auto motion director must define the decision contract');
+  assert(skill.includes('特效师强化'), 'SKILL.md must include the VFX supervisor stage');
+  assert(skill.includes('终审验收'), 'SKILL.md must include final acceptance');
+  assert(vfx.includes('VFXEnhancementPlan'), 'VFX supervisor must define the enhancement contract');
+  assert(vfx.includes('英雄时刻'), 'VFX supervisor must define hero moments');
+  assert(vfx.includes('效果预算'), 'VFX supervisor must define an effect budget');
+  assert(acceptance.includes('FinalAcceptanceReport'), 'final acceptance must define its report contract');
+  assert(acceptance.includes('四种观看模式'), 'final acceptance must define four review modes');
+  assert(acceptance.includes('硬门槛'), 'final acceptance must define hard gates');
+  assert(acceptance.includes('85'), 'final acceptance must define the 85-point delivery threshold');
+  assert(openai.includes('特效师'), 'openai.yaml must expose the VFX supervisor stage');
+  assert(openai.includes('终审'), 'openai.yaml must expose final acceptance');
+  assert(skill.includes('深空信号系统风'), 'SKILL.md must expose the deep signal system style');
+  assert(deepSignal.includes('三层信息架构'), 'deep signal system mode must define information layers');
+  assert(deepSignal.includes('相邻场景'), 'deep signal system mode must prevent repeated compositions');
+  assert(deepSignal.includes('强度 5'), 'deep signal system mode must define a single hero-moment budget');
 
   const referencePaths = [...skill.matchAll(/`(references\/[^`]+\.md)`/g)].map((match) => match[1]);
   for (const path of new Set(referencePaths)) {
@@ -77,4 +98,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('[OK] Slide Story mode entry, routes, templates, examples, and metadata are valid.');
+console.log('[OK] Slide Story routing, automatic motion, VFX supervision, final acceptance, examples, and metadata are valid.');
