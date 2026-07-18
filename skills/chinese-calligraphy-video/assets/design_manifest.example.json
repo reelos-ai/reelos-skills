@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "source": {
+    "title": "《诗名》",
+    "author": "朝代 · 作者",
+    "lines": ["第一句", "第二句"],
+    "text_integrity": "confirmed"
+  },
+  "content_analysis": {
+    "genre": "五言绝句",
+    "theme": "用一句话概括作品真正表达的精神内核",
+    "imagery": ["意象一", "意象二"],
+    "time_space": "时间、空间与观看距离",
+    "emotional_arc": ["起", "承", "转", "合"],
+    "rhythm": "句式、停顿、轻重与速度",
+    "light_material": ["光线", "材质"],
+    "cultural_logic": "文化信号如何进入结构而非堆砌符号",
+    "evidence": [
+      {"claim": "内容判断", "confidence": "inferred", "basis": "逐句文本分析"}
+    ]
+  },
+  "directions": [
+    {
+      "id": "direction-a",
+      "name": "方向名称",
+      "taste_thesis": "一句具体、可执行、只属于本内容的审美命题",
+      "dominant_aesthetic": "唯一主导风格",
+      "supporting_signals": ["最多两个辅助信号"],
+      "typography": {
+        "calligraphy_style": "书体与字势",
+        "title_font": "标题字体角色",
+        "metadata_font": "题签与作者字体角色",
+        "hierarchy": "正文、标题、题签的主次关系",
+        "legibility_rule": "字形可辨与狂放程度的边界"
+      },
+      "palette": {
+        "canvas": "#0A0A0A",
+        "primary_ink": "#B6A7D4",
+        "secondary_ink": "#2D6A5F",
+        "primary_role": "主笔与视觉焦点",
+        "secondary_role": "辅笔与节奏转折"
+      },
+      "composition": {
+        "focal_point": "唯一主焦点",
+        "negative_space": "留白位置及其叙事作用",
+        "shot_progression": "镜头之间如何递进"
+      },
+      "material_imagery": {
+        "background": "背景景物与抽象程度",
+        "texture": "纸、墨、雾、矿物色等材质",
+        "lighting": "光的方向与强度"
+      },
+      "motion": {
+        "reveal": "显影方式",
+        "tempo": "节奏",
+        "transition": "转场",
+        "restraint": "明确禁止的动效"
+      },
+      "audio": {
+        "voice": "音色",
+        "emotion": "情绪",
+        "speed": "语速",
+        "pause_logic": "停顿与画面关系"
+      },
+      "anti_patterns": ["禁止项一", "禁止项二"],
+      "scores": {
+        "content_fit": 4,
+        "cultural_coherence": 4,
+        "calligraphy_legibility": 4,
+        "palette_light": 4,
+        "composition_space": 4,
+        "motion_rhythm": 4,
+        "audio_fit": 4
+      }
+    },
+    {
+      "id": "direction-b",
+      "name": "备选方向名称",
+      "taste_thesis": "一句与方向 A 明显不同、但同样响应内容的审美命题",
+      "dominant_aesthetic": "另一种唯一主导风格",
+      "supporting_signals": ["最多两个辅助信号"],
+      "typography": {
+        "calligraphy_style": "另一种书体与字势",
+        "title_font": "标题字体角色",
+        "metadata_font": "题签与作者字体角色",
+        "hierarchy": "正文、标题、题签的主次关系",
+        "legibility_rule": "字形可辨边界"
+      },
+      "palette": {
+        "canvas": "#F0EDE8",
+        "primary_ink": "#151515",
+        "secondary_ink": "#C9372C",
+        "primary_role": "主笔与结构",
+        "secondary_role": "辅笔与转折"
+      },
+      "composition": {
+        "focal_point": "唯一主焦点",
+        "negative_space": "另一种留白策略",
+        "shot_progression": "另一种逐镜递进"
+      },
+      "material_imagery": {
+        "background": "背景景物与抽象程度",
+        "texture": "另一种材质策略",
+        "lighting": "另一种光线策略"
+      },
+      "motion": {
+        "reveal": "显影方式",
+        "tempo": "节奏",
+        "transition": "转场",
+        "restraint": "明确禁止的动效"
+      },
+      "audio": {
+        "voice": "音色",
+        "emotion": "情绪",
+        "speed": "语速",
+        "pause_logic": "停顿与画面关系"
+      },
+      "anti_patterns": ["禁止项一", "禁止项二"],
+      "scores": {
+        "content_fit": 4,
+        "cultural_coherence": 4,
+        "calligraphy_legibility": 4,
+        "palette_light": 4,
+        "composition_space": 4,
+        "motion_rhythm": 4,
+        "audio_fit": 4
+      }
+    }
+  ],
+  "selection": {
+    "selected_direction_id": "direction-a",
+    "reason": "为什么它最适合内容，而不是只因好看",
+    "minimum_score": 80,
+    "critical_minimum": 3
+  },
+  "implementation_handoff": {
+    "background_prompt": "可直接用于 GPT Image 的背景方向摘要",
+    "calligraphy_prompt": "可直接用于 GPT Image 的书法方向摘要",
+    "tts_direction": "可直接用于 TTS 的表演说明",
+    "verification": ["逐字核对", "检查双色角色", "检查中心留白", "检查声音落点"]
+  }
+}

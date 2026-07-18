@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "variant": "default",
+  "design_manifest": "design_manifest.json",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "reveal_style": "character-wipe",
+  "background_dim": 0.0,
+  "background_asset": "assets/backgrounds/background.png",
+  "title": "《诗名》",
+  "author": "朝代 · 作者",
+  "badge": "愿君全屏静赏",
+  "info_color": [182, 167, 212, 235],
+  "badge_color": [45, 106, 95, 240],
+  "line_build_seconds": 1.65,
+  "line_hold_seconds": 2.35,
+  "gap_seconds": 0.35,
+  "intro_seconds": 0.55,
+  "outro_seconds": 1.2,
+  "tts_lead_seconds": 0.3,
+  "max_line_width": 1760,
+  "max_line_height": 680,
+  "encoding": {
+    "video_codec": "libx264",
+    "preset": "medium",
+    "crf": 18,
+    "pixel_format": "yuv420p",
+    "audio_codec": "aac",
+    "audio_bitrate": "192k",
+    "audio_sample_rate": 48000
+  },
+  "lines": [
+    {"text": "第一句", "asset": "assets/lines/default/line_01.png", "audio": "assets/audio/line_01.mp3"},
+    {"text": "第二句", "asset": "assets/lines/default/line_02.png", "audio": "assets/audio/line_02.mp3"}
+  ]
+}
