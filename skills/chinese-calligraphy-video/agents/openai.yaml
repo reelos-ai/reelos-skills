@@ -1,0 +1,4 @@
+interface:
+  display_name: "中国诗词狂草视频"
+  short_description: "先评估内容审美，再用 GPT Image 与 TTS 制作书法视频"
+  default_prompt: "Use $chinese-calligraphy-video to analyze this Chinese poem, compare and score 2-3 aesthetic directions, then turn the approved direction into a two-color calligraphy video with synchronized TTS."

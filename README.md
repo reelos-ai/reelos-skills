@@ -11,6 +11,7 @@ The repository is organized as a skill library. Each folder under `skills/` is a
 Use this repo when you want Codex to handle repeatable ReelOS workflows with stable quality:
 
 - turn Chinese articles, pasted scripts, or links into narrated Remotion videos;
+- turn Chinese poems, prose, and quotation collections into calligraphy-led videos with content-specific aesthetics, GPT Image assets, TTS, and FFmpeg;
 - create SketchTalk-style vertical thought posters and video cover systems;
 - generate ReelOS-style Chinese article illustrations;
 - review or build refined visual taste systems;
@@ -21,6 +22,7 @@ Use this repo when you want Codex to handle repeatable ReelOS workflows with sta
 
 | Skill | Use when | Main output |
 | --- | --- | --- |
+| `chinese-calligraphy-video` | You want a Chinese poetry, prose, or quotation video with content-specific aesthetic scoring, two-color calligraphy, GPT Image backgrounds, TTS, and deterministic FFmpeg composition. | Design manifest, calligraphy assets, narration, synchronized H.264/AAC video, review frames |
 | `koubo-shengao-yuan` | You want to turn written Chinese material into an energetic self-media narration script before TTS or video production. | Reviewed narration script, TTS segmentation guidance, video workflow checks |
 | `reelos-video-production` | You want a Chinese narrated Remotion video with TTS, timing sync, visual design, motion direction, render, and validation. | MP4 video, TTS assets, timing files, Remotion composition, review frames |
 | `slides-product-promo` | You want to research a real website and turn it into a TTS-synchronized Bolt Slides product promo with comfortable motion. | Research notes, voiceover, TTS, timeline, interactive slides, synchronized MP4 |
@@ -85,6 +87,14 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --path skills/koubo-shengao-yuan
 ```
 
+Install the Chinese calligraphy video workflow:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo reelos-ai/reelos-skills \
+  --path skills/chinese-calligraphy-video
+```
+
 Install the ReelOS 15-second creative script generator:
 
 ```bash
@@ -116,6 +126,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --repo reelos-ai/reelos-skills \
   --path \
     skills/koubo-shengao-yuan \
+    skills/chinese-calligraphy-video \
     skills/reelos-video-production \
     skills/slides-product-promo \
     skills/reelos-sketchtalk \
@@ -157,6 +168,10 @@ You can call a skill explicitly by name:
 
 ```text
 Use $koubo-shengao-yuan to rewrite this article into a natural Chinese narration script.
+```
+
+```text
+Use $chinese-calligraphy-video to analyze this poem, compare aesthetic directions, and create a two-color calligraphy video with TTS.
 ```
 
 ```text
